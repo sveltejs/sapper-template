@@ -60,7 +60,6 @@
 			const { slug } = params;
 
 			return fetch(`/api/blog/${slug}`).then(r => r.json()).then(post => {
-				console.log({ post });
 				return { post };
 			});
 		}
