@@ -14,7 +14,7 @@ const posts = [
 		html: `
 			<p>First, you have to know what <a href='https://svelte.technology'>Svelte</a> is. Svelte is a UI framework with a bold new idea: rather than providing a library that you write code with (like React or Vue, for example), it's a compiler that turns your components into highly optimized vanilla JavaScript. If you haven't already read the <a href='https://svelte.technology/blog/frameworks-without-the-framework'>introductory blog post</a>, you should!</p>
 
-			<p>Sapper is a Next.js-style framework (<a href='http://localhost:3000/blog/how-is-sapper-different-from-next'>more on that here</a>) built around Svelte. It makes it embarrassingly easy to create extremely high performance web apps. Out of the box, you get:</p>
+			<p>Sapper is a Next.js-style framework (<a href='/blog/how-is-sapper-different-from-next'>more on that here</a>) built around Svelte. It makes it embarrassingly easy to create extremely high performance web apps. Out of the box, you get:</p>
 
 			<ul>
 				<li>Code-splitting, dynamic imports and hot module replacement, powered by webpack</li>
