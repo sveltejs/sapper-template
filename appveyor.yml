@@ -5,6 +5,8 @@ shallow_clone: true
 init:
   - git config --global core.autocrlf false
 
+build: off
+
 environment:
   matrix:
     # node.js
