@@ -14,5 +14,5 @@ environment:
 
 install:
   - ps: Install-Product node $env:nodejs_version
-  - yarn
-  - yarn test
+  - npm install cypress
+  - npm install
