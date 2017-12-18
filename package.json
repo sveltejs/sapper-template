@@ -4,7 +4,9 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "node server.js",
+    "build": "sapper build",
     "start": "cross-env NODE_ENV=production node server.js",
+    "prestart": "npm run build",
     "cy:run": "cypress run",
     "cy:open": "cypress open",
     "test": "run-p --race dev cy:run"
@@ -19,11 +21,12 @@
     "marked": "^0.3.7",
     "node-fetch": "^1.7.3",
     "npm-run-all": "^4.1.2",
-    "sapper": "^0.1.1",
+    "sapper": "^0.2.0",
     "serve-static": "^1.13.1",
     "style-loader": "^0.19.0",
     "svelte": "^1.49.1",
     "svelte-loader": "^2.2.1",
-    "uglifyjs-webpack-plugin": "^1.1.2"
+    "uglifyjs-webpack-plugin": "^1.1.2",
+    "webpack": "^3.10.0"
   }
 }
