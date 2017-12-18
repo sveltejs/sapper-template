@@ -37,7 +37,7 @@ self.addEventListener('fetch', event => {
 	const url = new URL(event.request.url);
 
 	// don't try to handle e.g. data: URIs
-	if (!/^https?/.test(url.protocol)) return;
+	if (!url.protocol.startsWith('http')) return;
 
 	// always serve assets and webpack-generated files from cache
 	if (cached.has(url.pathname)) {
