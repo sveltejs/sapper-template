@@ -25,8 +25,5 @@
     "svelte": "^1.49.1",
     "svelte-loader": "^2.2.1",
     "uglifyjs-webpack-plugin": "^1.1.2"
-  },
-  "devDependencies": {
-    "cypress": "^1.2.0"
   }
 }

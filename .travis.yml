@@ -5,5 +5,7 @@ node_js:
 env:
   global:
     - BUILD_TIMEOUT=10000
-install: npm install
+install:
+  - npm install
+  - npm install cypress
 
