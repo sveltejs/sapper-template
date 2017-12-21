@@ -6,7 +6,6 @@
     "dev": "node server.js",
     "build": "sapper build",
     "start": "cross-env NODE_ENV=production node server.js",
-    "prestart": "npm run build",
     "cy:run": "cypress run",
     "cy:open": "cypress open",
     "test": "run-p --race dev cy:run"
