@@ -1,8 +1,8 @@
 import posts from './_posts.js';
 
-const lookup = {};
+const lookup = new Map();
 posts.forEach(post => {
-	lookup[post.slug] = JSON.stringify(post);
+	lookup.set(post.slug, JSON.stringify(post));
 });
 
 export function get(req, res, next) {
@@ -10,13 +10,13 @@ export function get(req, res, next) {
 	// is called [slug].js
 	const { slug } = req.params;
 
-	if (slug in lookup) {
+	if (lookup.has(slug)) {
 		res.set({
 			'Content-Type': 'application/json',
 			'Cache-Control': `max-age=${30 * 60 * 1e3}` // cache for 30 minutes
 		});
 
-		res.end(lookup[slug]);
+		res.end(lookup.get(slug));
 	} else {
 		next();
 	}
