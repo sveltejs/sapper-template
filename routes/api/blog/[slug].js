@@ -12,8 +12,7 @@ export function get(req, res, next) {
 
 	if (lookup.has(slug)) {
 		res.set({
-			'Content-Type': 'application/json',
-			'Cache-Control': `max-age=${30 * 60 * 1e3}` // cache for 30 minutes
+			'Content-Type': 'application/json'
 		});
 
 		res.end(lookup.get(slug));
