@@ -61,7 +61,7 @@ Sapper uses webpack to provide code-splitting, dynamic imports and hot module re
 
 ## Production mode and deployment
 
-To start a production version of your app, run `npm start`. This will disable hot module replacement, and activate the appropriate webpack plugins.
+To start a production version of your app, run `npm run build && npm start`. This will disable hot module replacement, and activate the appropriate webpack plugins.
 
 You can deploy your application to any environment that supports Node 8 or above. As an example, to deploy to [Now](https://zeit.co/now), run these commands:
 
