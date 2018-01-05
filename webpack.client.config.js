@@ -1,7 +1,9 @@
-const config = require('sapper/webpack/config.js');
 const webpack = require('webpack');
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const config = require('sapper/webpack/config.js');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+
+const isDev = config.dev;
 
 module.exports = {
 	entry: config.client.entry(),
@@ -18,33 +20,41 @@ module.exports = {
 					loader: 'svelte-loader',
 					options: {
 						hydratable: true,
-						emitCss: !config.dev,
+						emitCss: !isDev,
 						cascade: false,
 						store: true
 					}
 				}
 			},
-			config.dev && {
+			isDev && {
 				test: /\.css$/,
 				use: [
-					{ loader: "style-loader" },
-					{ loader: "css-loader" }
+					{ loader: 'style-loader' },
+					{ loader: 'css-loader' }
 				]
 			},
-			!config.dev && {
+			!isDev && {
 				test: /\.css$/,
 				use: ExtractTextPlugin.extract({
 					fallback: 'style-loader',
-					use: [{ loader: 'css-loader', options: { sourceMap: config.dev } }]
+					use: [{ loader: 'css-loader', options: { sourceMap:isDev } }]
 				})
 			}
 		].filter(Boolean)
 	},
 	plugins: [
-		config.dev && new webpack.HotModuleReplacementPlugin(),
-		!config.dev && new ExtractTextPlugin('main.css'),
-		!config.dev && new webpack.optimize.ModuleConcatenationPlugin(),
-		!config.dev && new UglifyJSPlugin()
-	].filter(Boolean),
-	devtool: config.dev ? 'inline-source-map' : false
+		new webpack.optimize.CommonsChunkPlugin({
+			minChunks: 2,
+			async: false,
+			children: true
+		})
+	].concat(isDev ? [
+		new webpack.HotModuleReplacementPlugin()
+	] : [
+		new ExtractTextPlugin('main.css'),
+		new webpack.optimize.ModuleConcatenationPlugin(),
+		new webpack.optimize.AggressiveSplittingPlugin(),
+		new UglifyJSPlugin()
+	]).filter(Boolean),
+	devtool: isDev && 'inline-source-map'
 };
