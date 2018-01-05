@@ -53,7 +53,6 @@ module.exports = {
 	] : [
 		new ExtractTextPlugin('main.css'),
 		new webpack.optimize.ModuleConcatenationPlugin(),
-		new webpack.optimize.AggressiveSplittingPlugin(),
 		new UglifyJSPlugin()
 	]).filter(Boolean),
 	devtool: isDev && 'inline-source-map'
