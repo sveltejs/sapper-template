@@ -8,7 +8,7 @@ module.exports = {
 	output: config.server.output(),
 	target: 'node',
 	resolve: {
-		extensions: ['.js', '.html']
+		extensions: ['.js', '.html', '.ts']
 	},
 	module: {
 		rules: [
@@ -24,6 +24,10 @@ module.exports = {
 						generate: 'ssr'
 					}
 				}
+			},
+			{
+				test: /\.ts$/,
+				loader: 'ts-loader'
 			}
 		]
 	}
