@@ -9,7 +9,7 @@ module.exports = {
 	entry: config.client.entry(),
 	output: config.client.output(),
 	resolve: {
-		extensions: ['.js', '.html']
+		extensions: ['.js', '.html', '.ts']
 	},
 	module: {
 		rules: [
@@ -25,6 +25,10 @@ module.exports = {
 						store: true
 					}
 				}
+			},
+			{
+				test: /\.ts$/,
+				loader: 'ts-loader'
 			},
 			isDev && {
 				test: /\.css$/,

@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+        "diagnostics": true,
+        "noImplicitThis": true,
+        "noImplicitAny": true,
+        "noEmitOnError": true,
+        "allowJs": true,
+        "lib": ["es5", "es6", "dom"],
+        "importHelpers": true
+    },
+    "target": "ES5",
+    "include": [
+        "routes",
+        "templates"
+    ],
+    "exclude": [
+        "node_modules"
+    ]
+}
