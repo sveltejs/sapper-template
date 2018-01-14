@@ -19,15 +19,12 @@
     "glob": "^7.1.2",
     "node-fetch": "^1.7.3",
     "npm-run-all": "^4.1.2",
-    "sapper": "^0.3.1",
+    "sapper": "^0.4.0",
     "serve-static": "^1.13.1",
     "style-loader": "^0.19.1",
-    "svelte": "^1.50.0",
+    "svelte": "^1.51.1",
     "svelte-loader": "^2.3.3",
     "uglifyjs-webpack-plugin": "^1.1.5",
     "webpack": "^3.10.0"
-  },
-   "engines": {
-    "node": ">= 8"
   }
 }
