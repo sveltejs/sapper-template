@@ -51,6 +51,10 @@ module.exports = {
 	].concat(isDev ? [
 		new webpack.HotModuleReplacementPlugin()
 	] : [
+		new webpack.DefinePlugin({
+			'process.browser': true,
+			'process.env.NODE_ENV': '"production"'
+		}),
 		new ExtractTextPlugin('main.css'),
 		new webpack.optimize.ModuleConcatenationPlugin(),
 		new UglifyJSPlugin()
