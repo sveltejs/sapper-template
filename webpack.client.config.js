@@ -1,6 +1,5 @@
 const webpack = require('webpack');
 const config = require('sapper/webpack/config.js');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 const isDev = config.dev;
@@ -26,19 +25,12 @@ module.exports = {
 					}
 				}
 			},
-			isDev && {
+			{
 				test: /\.css$/,
 				use: [
 					{ loader: 'style-loader' },
-					{ loader: 'css-loader' }
+					{ loader: 'css-loader', options: { sourceMap:isDev } }
 				]
-			},
-			!isDev && {
-				test: /\.css$/,
-				use: ExtractTextPlugin.extract({
-					fallback: 'style-loader',
-					use: [{ loader: 'css-loader', options: { sourceMap:isDev } }]
-				})
 			}
 		].filter(Boolean)
 	},
@@ -51,7 +43,6 @@ module.exports = {
 	].concat(isDev ? [
 		new webpack.HotModuleReplacementPlugin()
 	] : [
-		new ExtractTextPlugin('main.css'),
 		new webpack.optimize.ModuleConcatenationPlugin(),
 		new UglifyJSPlugin()
 	]).filter(Boolean),
