@@ -8,7 +8,8 @@ module.exports = {
 	output: config.server.output(),
 	target: 'node',
 	resolve: {
-		extensions: ['.js', '.html']
+		extensions: ['.js', '.html'],
+		modules: ['routes', 'node_modules']
 	},
 	module: {
 		rules: [
