@@ -10,8 +10,8 @@ import blog_$slug$ from '../../routes/blog/[slug].html';
 
 export const routes = [
 	{ id: '_', type: 'page', pattern: /^\/?$/, params: () => ({}), module: _ },
-	{ id: '_4xx', type: 'page', pattern: /^\/4xx\/?$/, params: () => ({}), module: _4xx },
-	{ id: '_5xx', type: 'page', pattern: /^\/5xx\/?$/, params: () => ({}), module: _5xx },
+	{ error: '4xx', module: _4xx },
+	{ error: '5xx', module: _5xx },
 	{ id: 'about', type: 'page', pattern: /^\/about\/?$/, params: () => ({}), module: about },
 	{ id: 'blog', type: 'page', pattern: /^\/blog\/?$/, params: () => ({}), module: blog },
 	{ id: 'api_blog_posts', type: 'route', pattern: /^\/api\/blog-posts\/?$/, params: () => ({}), module: api_blog_posts },

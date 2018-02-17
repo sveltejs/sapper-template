@@ -3,6 +3,7 @@ import express from 'express';
 import compression from 'compression';
 import sapper from 'sapper';
 import serve from 'serve-static';
+import fetch from 'node-fetch';
 import { routes } from './manifest/server.js';
 
 const app = express();
@@ -10,7 +11,6 @@ const app = express();
 const { PORT = 3000 } = process.env;
 
 // this allows us to do e.g. `fetch('/api/blog-posts')` on the server
-const fetch = require('node-fetch');
 global.fetch = (url, opts) => {
 	if (url[0] === '/') url = `http://localhost:${PORT}${url}`;
 	return fetch(url, opts);
