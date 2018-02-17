@@ -1,8 +1,11 @@
-const fs = require('fs');
-const app = require('express')();
-const compression = require('compression');
-const sapper = require('sapper');
-const static = require('serve-static');
+import fs from 'fs';
+import express from 'express';
+import compression from 'compression';
+import sapper from 'sapper';
+import serve from 'serve-static';
+import { routes } from './manifest/server.js';
+
+const app = express();
 
 const { PORT = 3000 } = process.env;
 
@@ -15,9 +18,11 @@ global.fetch = (url, opts) => {
 
 app.use(compression({ threshold: 0 }));
 
-app.use(static('assets'));
+app.use(serve('assets'));
 
-app.use(sapper());
+app.use(sapper({
+	routes
+}));
 
 app.listen(PORT, () => {
 	console.log(`listening on port ${PORT}`);
