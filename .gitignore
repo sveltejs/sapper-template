@@ -5,3 +5,4 @@ yarn.lock
 cypress/screenshots
 templates/.*
 dist
+app/manifest
