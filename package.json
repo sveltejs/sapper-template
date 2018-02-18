@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "sapper dev",
     "build": "sapper build",
-    "start": "cross-env NODE_ENV=production node server.js",
+    "export": "sapper export",
+    "start": "cross-env NODE_ENV=production node .sapper/server.js",
     "cy:run": "cypress run",
     "cy:open": "cypress open",
     "test": "run-p --race dev cy:run"
