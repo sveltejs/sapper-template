@@ -3,9 +3,10 @@
   "description": "TODO",
   "version": "0.0.1",
   "scripts": {
-    "dev": "node server.js",
+    "dev": "sapper dev",
     "build": "sapper build",
-    "start": "cross-env NODE_ENV=production node server.js",
+    "export": "sapper export",
+    "start": "cross-env NODE_ENV=production node .sapper/server.js",
     "cy:run": "cypress run",
     "cy:open": "cypress open",
     "test": "run-p --race dev cy:run"
@@ -19,7 +20,7 @@
     "glob": "^7.1.2",
     "node-fetch": "^2.0.0",
     "npm-run-all": "^4.1.2",
-    "sapper": "^0.6.3",
+    "sapper": "^0.6.4",
     "serve-static": "^1.13.1",
     "style-loader": "^0.20.1",
     "svelte": "^1.51.1",
