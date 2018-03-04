@@ -22,7 +22,8 @@ module.exports = {
 						hydratable: true,
 						emitCss: !isDev,
 						cascade: false,
-						store: true
+						store: true,
+						hotReload: true
 					}
 				}
 			},
