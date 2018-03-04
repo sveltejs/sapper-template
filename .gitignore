@@ -5,4 +5,5 @@ yarn.lock
 cypress/screenshots
 templates/.*
 export
+build
 app/manifest
