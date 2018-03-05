@@ -4,5 +4,6 @@ node_modules
 yarn.lock
 cypress/screenshots
 templates/.*
-dist
+export
+build
 app/manifest
