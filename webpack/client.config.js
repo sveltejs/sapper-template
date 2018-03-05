@@ -20,7 +20,8 @@ module.exports = {
 					options: {
 						hydratable: true,
 						cascade: false,
-						store: true
+						store: true,
+						hotReload: true
 					}
 				}
 			}
