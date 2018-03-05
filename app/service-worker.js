@@ -26,7 +26,7 @@ self.addEventListener('activate', event => {
 				if (key !== ASSETS) await caches.delete(key);
 			}
 
-			await self.clients.claim();
+			self.clients.claim();
 		})
 	);
 });
