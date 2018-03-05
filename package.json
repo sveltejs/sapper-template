@@ -18,7 +18,7 @@
     "glob": "^7.1.2",
     "node-fetch": "^2.0.0",
     "npm-run-all": "^4.1.2",
-    "sapper": "^0.7.0",
+    "sapper": "^0.8.1",
     "serve-static": "^1.13.1",
     "svelte": "^1.56.0",
     "svelte-loader": "^2.3.3",
