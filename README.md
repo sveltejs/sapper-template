@@ -21,7 +21,13 @@ Sapper expects to find three directories in the root of your project — `assets
 
 The [assets](assets) directory contains any static assets that should be available. These are served using [serve-static](https://github.com/expressjs/serve-static).
 
-In your [service-worker.js](app/service-worker.js) file, Sapper makes these files available as `__assets__` so that you can cache them (though you can choose not to, for example if you don't want to cache very large files).
+In your [service-worker.js](app/service-worker.js) file, you can import these as `assets` from the generated manifest...
+
+```js
+import { assets } from './manifest/service-worker.js';
+```
+
+...so that you can cache them (though you can choose not to, for example if you don't want to cache very large files).
 
 
 ### routes
