@@ -1,5 +1,6 @@
 import posts from './_posts.js';
 
+const ONE_YEAR_IN_SECONDS = 60 * 60 * 24 * 365;
 const lookup = new Map();
 posts.forEach(post => {
 	lookup.set(post.slug, JSON.stringify(post));
@@ -12,7 +13,8 @@ export function get(req, res, next) {
 
 	if (lookup.has(slug)) {
 		res.set({
-			'Content-Type': 'application/json'
+			'Content-Type': 'application/json',
+			'Cache-Control': `public, max-age=${ONE_YEAR_IN_SECONDS}`
 		});
 
 		res.end(lookup.get(slug));
