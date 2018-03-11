@@ -21,7 +21,13 @@ Sapper expects to find three directories in the root of your project — `assets
 
 The [assets](assets) directory contains any static assets that should be available. These are served using [serve-static](https://github.com/expressjs/serve-static).
 
-In your [service-worker.js](templates/service-worker.js) file, Sapper makes these files available as `__assets__` so that you can cache them (though you can choose not to, for example if you don't want to cache very large files).
+In your [service-worker.js](app/service-worker.js) file, you can import these as `assets` from the generated manifest...
+
+```js
+import { assets } from './manifest/service-worker.js';
+```
+
+...so that you can cache them (though you can choose not to, for example if you don't want to cache very large files).
 
 
 ### routes
@@ -43,11 +49,11 @@ There are three simple rules for naming the files that define your routes:
 
 This directory should contain the following files at a minimum:
 
-* [2xx.html](templates/2xx.html) — a template for the page to serve for valid requests
-* [4xx.html](templates/4xx.html) — a template for 4xx-range errors (such as 404 Not Found)
-* [5xx.html](templates/5xx.html) — a template for 5xx-range errors (such as 500 Internal Server Error)
-* [main.js](templates/main.js) — this module initialises Sapper
-* [service-worker.js](templates/service-worker.js) — your app's service worker
+* [app/client.js](app/client.js) — this module initialises Sapper
+* [app/service-worker.js](app/service-worker.js) — your app's service worker
+* [app/template.html](app/template.html) — a template for the page to serve for valid requests
+* [routes/4xx.html](routes/4xx.html) — a template for 4xx-range errors (such as 404 Not Found)
+* [routes/5xx.html](routes/5xx.html) — a template for 5xx-range errors (such as 500 Internal Server Error)
 
 Inside the HTML templates, Sapper will inject various values as indicated by `%sapper.xxxx%` tags. Inside JavaScript files, Sapper will replace strings like `__dev__` with the appropriate value.
 
