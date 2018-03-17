@@ -59,7 +59,7 @@
 			// is called [slug].html
 			const { slug } = params;
 
-			return fetch(`/blog/${slug}.json`).then(r => r.json()).then(post => {
+			return fetch(`blog/${slug}.json`).then(r => r.json()).then(post => {
 				return { post };
 			});
 		}
