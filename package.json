@@ -19,7 +19,7 @@
     "polka": "^0.3.4",
     "sapper": "^0.9.4",
     "serve-static": "^1.13.1",
-    "svelte": "^1.56.0",
+    "svelte": "^1.57.3",
     "svelte-loader": "^2.3.3",
     "webpack": "^4.1.0"
   }
