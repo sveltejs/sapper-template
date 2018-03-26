@@ -2,6 +2,7 @@
 node_modules
 .sapper
 yarn.lock
+yarn-error.log
 cypress/screenshots
 templates/.*
 export
