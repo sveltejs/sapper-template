@@ -1,12 +1,12 @@
-<:Head>
-	<title>{{post.title}}</title>
-</:Head>
+<svelte:head>
+	<title>{post.title}</title>
+</svelte:head>
 
 <Layout page='blog'>
-	<h1>{{post.title}}</h1>
+	<h1>{post.title}</h1>
 
 	<div class='content'>
-		{{{post.html}}}
+		{@html post.html}
 	</div>
 </Layout>
 

@@ -18,8 +18,6 @@ module.exports = {
 					loader: 'svelte-loader',
 					options: {
 						css: false,
-						cascade: false,
-						store: true,
 						generate: 'ssr'
 					}
 				}
