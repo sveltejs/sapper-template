@@ -6,15 +6,6 @@ body {
 	color: #333;
 }
 
-main {
-	position: relative;
-	max-width: 56em;
-	background-color: white;
-	padding: 2em;
-	margin: 0 auto;
-	box-sizing: border-box;
-}
-
 h1, h2, h3, h4, h5, h6 {
 	margin: 0 0 0.5em 0;
 	font-weight: 400;

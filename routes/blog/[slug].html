@@ -2,13 +2,11 @@
 	<title>{post.title}</title>
 </svelte:head>
 
-<Layout page='blog'>
-	<h1>{post.title}</h1>
+<h1>{post.title}</h1>
 
-	<div class='content'>
-		{@html post.html}
-	</div>
-</Layout>
+<div class='content'>
+	{@html post.html}
+</div>
 
 <style>
 	/*
@@ -47,13 +45,7 @@
 </style>
 
 <script>
-	import Layout from '../_components/Layout.html';
-
 	export default {
-		components: {
-			Layout
-		},
-
 		preload({ params, query }) {
 			// the `slug` parameter is available because this file
 			// is called [slug].html
