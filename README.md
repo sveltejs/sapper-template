@@ -11,6 +11,8 @@ npm run dev
 
 Open up [localhost:3000](http://localhost:3000) and start clicking around.
 
+Consult [sapper.svelte.technology](https://sapper.svelte.technology) for help getting started.
+
 
 ## Structure
 
