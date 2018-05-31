@@ -1,17 +1,17 @@
+import sirv from 'sirv';
 import polka from 'polka';
-import compression from 'compression';
 import sapper from 'sapper';
-import serve from 'serve-static';
+import compression from 'compression';
 import { routes } from './manifest/server.js';
 import App from './App.html';
 
 polka() // You can also use Express
 	.use(
 		compression({ threshold: 0 }),
-		serve('assets'),
-		sapper({
-			routes,
-			App
-		})
+		sirv('assets'),
+		sapper({ routes, App })
 	)
-	.listen(process.env.PORT);
+	.listen(process.env.PORT)
+	.catch(err => {
+		console.log('error', err);
+	})
