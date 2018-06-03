@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const config = require('sapper/webpack/config.js');
+const { compileSASS, compileCoffeeScript } = require('./preprocessors');
 
 const mode = process.env.NODE_ENV;
 const isDev = mode === 'development';
@@ -20,7 +21,17 @@ module.exports = {
 					options: {
 						dev: isDev,
 						hydratable: true,
-						hotReload: true
+						hotReload: true,
+                        preprocess: {
+                            style: ({ content, attributes }) => {
+                                if(attributes.type !== 'text/scss') return;
+                                return compileSASS(content)
+                            },
+                            script: ({ content, attributes }) => {
+                                if(attributes.type !== 'text/coffeescript') return;
+                                return compileCoffeeScript(content)
+                            }
+                        }
 					}
 				}
 			}

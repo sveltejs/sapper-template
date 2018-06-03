@@ -1,5 +1,6 @@
 const config = require('sapper/webpack/config.js');
 const pkg = require('../package.json');
+const { compileSASS, compileCoffeeScript } = require('./preprocessors');
 
 module.exports = {
 	entry: config.server.entry(),
@@ -18,7 +19,17 @@ module.exports = {
 					loader: 'svelte-loader',
 					options: {
 						css: false,
-						generate: 'ssr'
+						generate: 'ssr',
+                        preprocess: {
+                            style: ({ content, attributes }) => {
+                                if(attributes.type !== 'text/scss') return;
+                                return compileSASS(content)
+                            },
+                            script: ({ content, attributes }) => {
+                                if(attributes.type !== 'text/coffeescript') return;
+                                return compileCoffeeScript(content)
+                            }
+                        }
 					}
 				}
 			}

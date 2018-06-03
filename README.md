@@ -56,6 +56,52 @@ There are three simple rules for naming the files that define your routes:
 
 Sapper uses webpack to provide code-splitting, dynamic imports and hot module reloading, as well as compiling your Svelte components. As long as you don't do anything daft, you can edit the configuration files to add whatever loaders and plugins you'd like.
 
+### SASS Support
+
+You can use SASS in your Svelte components out of the box. Just add `type="text/scss"` to your `style` tag, like so:
+```
+// routes/index.html
+
+<p>
+    Some <strong>HTMl</strong> Content...
+<p>
+
+<style type="text/scss">
+    p {
+      color: red;
+
+      strong {
+        color: black;
+      }
+    }
+</style>
+```
+
+### CoffeeScript Support
+
+There is also built-in support for CoffeeScript, just add the corresponding `type` to the `script` tag, like so:
+```
+// routes/index.html
+
+<script type="text/coffeescript">
+    import SomeComponent from '../components/some.html'
+    import asyncAction from './_helpers/ajax'
+
+    export default
+        oncreate: ->
+            console.log "Component created"
+
+        methods: ->
+            handleAction: (event) ->
+              event.preventDefault()
+              slug = event.target.value
+
+              try
+                  dataFromServer = await asyncAction(slug)
+              catch e
+                  console.log e
+</script>
+```
 
 ## Production mode and deployment
 

@@ -18,6 +18,8 @@
     "sirv": "^0.1.1"
   },
   "devDependencies": {
+    "coffeescript": "^2.2.4",
+    "node-sass": "^4.8.3",
     "npm-run-all": "^4.1.2",
     "svelte": "^2.0.0",
     "svelte-loader": "^2.9.0",
