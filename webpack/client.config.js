@@ -1,4 +1,6 @@
 const webpack = require('webpack');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+
 const config = require('sapper/webpack/config.js');
 
 const mode = process.env.NODE_ENV;
@@ -20,14 +22,26 @@ module.exports = {
 					options: {
 						dev: isDev,
 						hydratable: true,
-						hotReload: true
+						hotReload: true,
+						emitCss: true
 					}
 				}
+			},
+			{
+				test: /\.css$/,
+				use: [
+					isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
+					"css-loader"
+				]
 			}
 		]
 	},
 	mode,
 	plugins: [
+		new MiniCssExtractPlugin({
+			filename: "[name].css",
+			chunkFilename: "[id].css"
+		}),
 		isDev && new webpack.HotModuleReplacementPlugin(),
 		new webpack.DefinePlugin({
 			'process.browser': true,
