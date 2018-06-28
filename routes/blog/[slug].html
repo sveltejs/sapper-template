@@ -46,14 +46,17 @@
 
 <script>
 	export default {
-		preload({ params, query }) {
-			// the `slug` parameter is available because this file
-			// is called [slug].html
-			const { slug } = params;
+		async preload({ params, query }) {
+			// the `slug` parameter is available because
+			// this file is called [slug].html
+			const res = await this.fetch(`blog/${params.slug}.json`);
+			const data = await res.json();
 
-			return this.fetch(`blog/${slug}.json`).then(r => r.json()).then(post => {
-				return { post };
-			});
+			if (res.status === 200) {
+				return { post: data };
+			} else {
+				this.error(res.status, data.message);
+			}
 		}
 	};
 </script>
