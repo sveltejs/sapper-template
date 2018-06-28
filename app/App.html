@@ -1,9 +1,4 @@
-<Nav page={
-	props.path === '/' ? 'home' :
-	props.path === '/about' ? 'about' :
-	props.path.startsWith('/blog') ? 'blog' :
-	null
-}/>
+<Nav path={props.path}/>
 
 <main>
 	<svelte:component this={Page} {...props}/>
