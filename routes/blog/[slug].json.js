@@ -6,8 +6,8 @@ posts.forEach(post => {
 });
 
 export function get(req, res, next) {
-	// the `slug` parameter is available because this file
-	// is called [slug].json.js
+	// the `slug` parameter is available because
+	// this file is called [slug].json.js
 	const { slug } = req.params;
 
 	if (lookup.has(slug)) {
@@ -17,6 +17,12 @@ export function get(req, res, next) {
 
 		res.end(lookup.get(slug));
 	} else {
-		next();
+		res.writeHead(404, {
+			'Content-Type': 'application/json'
+		});
+
+		res.end(JSON.stringify({
+			message: `Not found`
+		}));
 	}
 }
