@@ -20,7 +20,8 @@ module.exports = {
 					options: {
 						dev: isDev,
 						hydratable: true,
-						hotReload: true
+						hotReload: true,
+						nestedTransitions: true
 					}
 				}
 			}

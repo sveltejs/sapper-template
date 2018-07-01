@@ -2,13 +2,23 @@
 	<title>{post.title}</title>
 </svelte:head>
 
-<h1>{post.title}</h1>
+<div style="position: absolute">
+	<h1
+		in:receive="{key: post.title}"
+		out:send="{key: post.title}"
+	>{post.title}</h1>
 
-<div class='content'>
-	{@html post.html}
+	<div transition:fade="{duration: 100}" class='content'>
+		{@html post.html}
+	</div>
 </div>
 
 <style>
+	h1 {
+		display: inline-block;
+		will-change: transform;
+	}
+
 	/*
 		By default, CSS is locally scoped to the component,
 		and any unused styles are dead-code-eliminated.
@@ -45,6 +55,9 @@
 </style>
 
 <script>
+	import { fade } from 'svelte-transitions';
+	import { send, receive } from './_transitions.js';
+
 	export default {
 		async preload({ params, query }) {
 			// the `slug` parameter is available because
@@ -57,6 +70,12 @@
 			} else {
 				this.error(res.status, data.message);
 			}
+		},
+
+		transitions: {
+			fade,
+			send,
+			receive
 		}
 	};
 </script>
