@@ -58,6 +58,8 @@ self.addEventListener('fetch', event => {
 	}
 	*/
 
+	if (event.request.cache === 'only-if-cached') return;
+
 	// for everything else, try the network first, falling back to
 	// cache if the user is offline. (If the pages never change, you
 	// might prefer a cache-first approach to a network-first one.)
@@ -66,11 +68,6 @@ self.addEventListener('fetch', event => {
 			.open(`offline${timestamp}`)
 			.then(async cache => {
 				try {
-					if (event.request.cache === 'only-if-cache') {
-						// workaround Chrome devtools bug https://github.com/sveltejs/sapper-template/issues/34
-						event.request.mode = 'same-origin';
-					}
-
 					const response = await fetch(event.request);
 					cache.put(event.request, response.clone());
 					return response;
