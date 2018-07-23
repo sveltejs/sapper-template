@@ -1,7 +1,7 @@
-<Nav path={props.path}/>
+<Nav segment={child.segment}/>
 
 <main>
-	<svelte:component this={Page} {...props}/>
+	<svelte:component this={child.component} {...child.props}/>
 </main>
 
 <style>
@@ -16,11 +16,9 @@
 </style>
 
 <script>
-	import Nav from '../components/Nav.html';
-
 	export default {
 		components: {
-			Nav
+			Nav: '../components/Nav.html'
 		}
 	};
 </script>
