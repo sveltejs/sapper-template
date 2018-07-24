@@ -21,12 +21,12 @@ Sapper expects to find three directories in the root of your project —  `app`,
 
 ### app
 
-The [app](app) directory contains the entry points for your app — `client.js`, `server.js` and (optionally) a `service-worker.js` — along with your main `App.html` component.
+The [app](app) directory contains the entry points for your app — `client.js`, `server.js` and (optionally) a `service-worker.js` — along with a `template.html` file.
 
 
 ### assets
 
-The [assets](assets) directory contains any static assets that should be available. These are served using [serve-static](https://github.com/expressjs/serve-static).
+The [assets](assets) directory contains any static assets that should be available. These are served using [sirv](https://github.com/lukeed/sirv).
 
 In your [service-worker.js](app/service-worker.js) file, you can import these as `assets` from the generated manifest...
 
