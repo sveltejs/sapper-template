@@ -2,7 +2,7 @@ const webpack = require('webpack');
 const config = require('sapper/webpack/config.js');
 
 const mode = process.env.NODE_ENV;
-const isDev = mode === 'development';
+const dev = mode === 'development';
 
 module.exports = {
 	entry: config.client.entry(),
@@ -18,7 +18,7 @@ module.exports = {
 				use: {
 					loader: 'svelte-loader',
 					options: {
-						dev: isDev,
+						dev,
 						hydratable: true,
 						hotReload: true
 					}
@@ -28,11 +28,11 @@ module.exports = {
 	},
 	mode,
 	plugins: [
-		isDev && new webpack.HotModuleReplacementPlugin(),
+		dev && new webpack.HotModuleReplacementPlugin(),
 		new webpack.DefinePlugin({
 			'process.browser': true,
 			'process.env.NODE_ENV': JSON.stringify(mode)
 		}),
 	].filter(Boolean),
-	devtool: isDev && 'inline-source-map'
+	devtool: dev && 'inline-source-map'
 };
