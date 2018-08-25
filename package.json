@@ -1,0 +1,31 @@
+{
+  "name": "TODO",
+  "description": "TODO",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "sapper dev",
+    "build": "sapper build",
+    "export": "sapper export",
+    "start": "node build",
+    "cy:run": "cypress run",
+    "cy:open": "cypress open",
+    "test": "run-p --race dev cy:run"
+  },
+  "dependencies": {
+    "compression": "^1.7.1",
+    "polka": "^0.4.0",
+    "sapper": "^0.17.0",
+    "sirv": "^0.2.0"
+  },
+  "devDependencies": {
+    "@ampproject/rollup-plugin-closure-compiler": "^0.6.1",
+    "npm-run-all": "^4.1.2",
+    "rollup": "^0.64.1",
+    "rollup-plugin-commonjs": "^9.1.6",
+    "rollup-plugin-node-resolve": "^3.3.0",
+    "rollup-plugin-replace": "^2.0.0",
+    "rollup-plugin-svelte": "^4.2.1",
+    "rollup-plugin-terser": "^1.0.1",
+    "svelte": "^2.0.0"
+  }
+}
