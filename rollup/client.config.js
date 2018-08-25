@@ -1,3 +1,4 @@
+import loadz0r from 'rollup-plugin-loadz0r';
 import resolve from 'rollup-plugin-node-resolve';
 import replace from 'rollup-plugin-replace';
 import commonjs from 'rollup-plugin-commonjs';
@@ -14,6 +15,7 @@ export default {
 	input: config.client.input(),
 	output: config.client.output(),
 	plugins: [
+		loadz0r({ publicPath: 'client' }),
 		resolve(),
 		replace({
 			'process.browser': true,
