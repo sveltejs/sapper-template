@@ -2,12 +2,10 @@ import resolve from 'rollup-plugin-node-resolve';
 import replace from 'rollup-plugin-replace';
 import commonjs from 'rollup-plugin-commonjs';
 import { terser } from 'rollup-plugin-terser';
-import config from 'sapper/rollup.js';
-import pkg from '../package.json';
+import config from 'sapper/config/rollup.js';
 
 const mode = process.env.NODE_ENV;
 const dev = mode === 'development';
-const prod = !dev;
 
 export default {
 	input: config.serviceworker.input(),
@@ -19,10 +17,7 @@ export default {
 			'process.env.NODE_ENV': JSON.stringify(mode)
 		}),
 		commonjs(),
-		prod && terser()
+		!dev && terser()
 	],
-	external: Object.keys(pkg.dependencies).concat(
-		require('module').builtinModules
-	),
 	experimentalCodeSplitting: true
 };

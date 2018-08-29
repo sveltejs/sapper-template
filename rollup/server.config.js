@@ -2,12 +2,11 @@ import resolve from 'rollup-plugin-node-resolve';
 import replace from 'rollup-plugin-replace';
 import commonjs from 'rollup-plugin-commonjs';
 import svelte from 'rollup-plugin-svelte';
-import config from 'sapper/rollup.js';
+import config from 'sapper/config/rollup.js';
 import pkg from '../package.json';
 
 const mode = process.env.NODE_ENV;
 const dev = mode === 'development';
-const prod = !dev;
 
 export default {
 	input: config.server.input(),
