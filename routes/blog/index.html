@@ -23,10 +23,9 @@
 
 <script>
 	export default {
-		preload({ params, query }) {
-			return this.fetch(`blog.json`).then(r => r.json()).then(posts => {
-				return { posts };
-			});
+		async preload({ params, query }) {
+			const posts = await this.fetch(`blog.json`).then(r => r.json());
+			return { posts };
 		}
 	};
 </script>
