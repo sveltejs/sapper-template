@@ -8,7 +8,7 @@ import config from 'sapper/config/rollup.js';
 
 const mode = process.env.NODE_ENV;
 const dev = mode === 'development';
-const legacy = process.env.SAPPER_LEGACY_BUILD;
+const legacy = !!process.env.SAPPER_LEGACY_BUILD;
 
 export default {
 	input: config.client.input(),
