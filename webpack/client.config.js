@@ -1,5 +1,5 @@
 const webpack = require('webpack');
-const config = require('sapper/webpack/config.js');
+const config = require('sapper/config/webpack.js');
 
 const mode = process.env.NODE_ENV;
 const dev = mode === 'development';
