@@ -6,6 +6,12 @@
 
 <p>{error.message}</p>
 
+{#if NODE_ENV === 'development'}
+<pre>
+	{error.stack}
+</pre>
+{/if}
+
 <style>
 	h1, p {
 		margin: 0 auto;
@@ -27,3 +33,13 @@
 		}
 	}
 </style>
+
+<script>
+	export default {
+		data() {
+			return {
+				NODE_ENV: process.env.NODE_ENV
+			};
+		}
+	};
+</script>
