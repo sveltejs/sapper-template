@@ -1,9 +1,9 @@
-# sapper-template
+# sapper-template-rollup
 
-The default [Sapper](https://github.com/sveltejs/sapper) template. To clone it and get started:
+A version of the default [Sapper](https://github.com/sveltejs/sapper) template that uses Rollup instead of webpack. To clone it and get started:
 
 ```bash
-npx degit sveltejs/sapper-template my-app
+npx degit sveltejs/sapper-template-rollup my-app
 cd my-app
 npm install # or yarn!
 npm run dev
@@ -52,31 +52,20 @@ There are three simple rules for naming the files that define your routes:
 * Files and directories with a leading underscore do *not* create routes. This allows you to colocate helper modules and components with the routes that depend on them — for example you could have a file called `routes/_helpers/datetime.js` and it would *not* create a `/_helpers/datetime` route
 
 
-## Webpack config
+## Rollup config
 
-Sapper uses webpack to provide code-splitting, dynamic imports and hot module reloading, as well as compiling your Svelte components. As long as you don't do anything daft, you can edit the configuration files to add whatever loaders and plugins you'd like.
+Sapper uses Rollup to provide code-splitting and dynamic imports, as well as compiling your Svelte components. As long as you don't do anything daft, you can edit the configuration files to add whatever plugins you'd like.
 
 
 ## Production mode and deployment
 
-To start a production version of your app, run `npm run build && npm start`. This will disable hot module replacement, and activate the appropriate webpack plugins.
+To start a production version of your app, run `npm run build && npm start`.
 
 You can deploy your application to any environment that supports Node 8 or above. As an example, to deploy to [Now](https://zeit.co/now), run these commands:
 
 ```bash
 npm install -g now
 now
-```
-
-
-## Using external components
-
-When using Svelte components installed from npm, such as [@sveltejs/svelte-virtual-list](https://github.com/sveltejs/svelte-virtual-list), Svelte needs the original component source (rather than any precompiled JavaScript that ships with the component). This allows the component to be rendered server-side, and also keeps your client-side app smaller.
-
-Because of that, it's essential that webpack doesn't treat the package as an *external dependency*. You can either modify the `externals` option in [webpack/server.config.js](webpack/server.config.js), or simply install the package to `devDependencies` rather than `dependencies`, which will cause it to get bundled (and therefore compiled) with your app:
-
-```bash
-yarn add -D @sveltejs/svelte-virtual-list
 ```
 
 
