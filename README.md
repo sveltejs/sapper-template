@@ -3,7 +3,7 @@
 A version of the default [Sapper](https://github.com/sveltejs/sapper) template that uses Rollup instead of webpack. To clone it and get started:
 
 ```bash
-npx degit sveltejs/sapper-template-rollup my-app
+npx degit sveltejs/sapper-template#rollup my-app
 cd my-app
 npm install # or yarn!
 npm run dev
