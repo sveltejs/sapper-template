@@ -24,7 +24,7 @@ export default {
 		commonjs()
 	],
 	external: Object.keys(pkg.dependencies).concat(
-		require('module').builtinModules
+		require('module').builtinModules || Object.keys(process.binding('natives'))
 	),
 
 	// temporary, pending Rollup 1.0
