@@ -18,10 +18,5 @@ export default {
 		}),
 		commonjs(),
 		!dev && terser()
-	],
-
-	// temporary, pending https://github.com/rollup/rollup/pull/2432
-	watch: {
-		chokidar: { disableGlobbing: true }
-	}
+	]
 };

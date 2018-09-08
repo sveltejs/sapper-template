@@ -28,10 +28,5 @@ export default {
 	),
 
 	// temporary, pending Rollup 1.0
-	experimentalCodeSplitting: true,
-
-	// temporary, pending https://github.com/rollup/rollup/pull/2432
-	watch: {
-		chokidar: { disableGlobbing: true }
-	}
+	experimentalCodeSplitting: true
 };

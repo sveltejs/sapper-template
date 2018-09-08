@@ -25,7 +25,7 @@
     "@babel/runtime": "^7.0.0",
     "chokidar": "^2.0.4",
     "npm-run-all": "^4.1.2",
-    "rollup": "^0.65.0",
+    "rollup": "^0.65.2",
     "rollup-plugin-babel": "^4.0.2",
     "rollup-plugin-commonjs": "^9.1.6",
     "rollup-plugin-node-resolve": "^3.3.0",
