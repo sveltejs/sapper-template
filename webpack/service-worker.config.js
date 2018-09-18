@@ -1,4 +1,4 @@
-const config = require('sapper/webpack/config.js');
+const config = require('sapper/config/webpack.js');
 
 module.exports = {
 	entry: config.serviceworker.entry(),

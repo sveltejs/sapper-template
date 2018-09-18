@@ -1,5 +1,7 @@
-const config = require('sapper/webpack/config.js');
+const config = require('sapper/config/webpack.js');
 const pkg = require('../package.json');
+
+const dev = process.env.NODE_ENV === 'development';
 
 module.exports = {
 	entry: config.server.entry(),
@@ -18,7 +20,8 @@ module.exports = {
 					loader: 'svelte-loader',
 					options: {
 						css: false,
-						generate: 'ssr'
+						generate: 'ssr',
+						dev
 					}
 				}
 			}
