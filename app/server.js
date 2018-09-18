@@ -13,7 +13,6 @@ polka() // You can also use Express
 		sirv('assets', { dev }),
 		sapper({ manifest })
 	)
-	.listen(PORT)
-	.catch(err => {
-		console.log('error', err);
+	.listen(PORT, err => {
+		if (err) console.log('error', err);
 	})
