@@ -9,6 +9,7 @@ import { Strategy as LocalStrategy } from 'passport-local';
 import db from './db';
 
 const env = process.env.NODE_ENV;
+const JWT_SECRET = 'put-your-JWT-secret-here'; // you can set this w/ an environment variable
 
 export function authSetup(app) {
 
@@ -33,6 +34,7 @@ export function authSetup(app) {
 
 	app.post('/auth/signup', async(req, res, next) => {
 		try {
+			debugger
 			const { username, email, password } = req.body;
 
 			const userExists = db.find('username', username);
@@ -51,13 +53,13 @@ export function authSetup(app) {
 
 			// generate a signed son web token with the contents of user object and return it in the response
 			const month = 60 * 60 * 24 * 30;
-			const token = jwt.sign(userToSendToClient, config.JWT_SECRET, { expiresIn: month });
+			const token = jwt.sign(userToSendToClient, JWT_SECRET, { expiresIn: month });
 			res.cookie('ds', token, {
 				// httpOnly: false,
 				secure: env === 'production' ? true : false,
 				maxAge: 1000 * month,
 			});
-			res.status(200).send({ userToSendToClient });
+			res.status(200).send({ user: userToSendToClient });
 		} catch (error) {
 			res.status(400).send({ error: 'req body should take the form { username, password }' });
 		}
@@ -77,7 +79,7 @@ export function authSetup(app) {
 				}
 				// generate a signed son web token with the contents of user object and return it in the response
 				const month = 60 * 60 * 24 * 30;
-				const token = jwt.sign(user, config.JWT_SECRET, { expiresIn: month });
+				const token = jwt.sign(user, JWT_SECRET, { expiresIn: month });
 				return res.cookie('ds', token, {
 					// httpOnly: false,
 					secure: env === 'production' ? true : false,

@@ -2,4 +2,194 @@
 	<title>Sign Up</title>
 </svelte:head>
 
-<h1>Sign Up</h1>
+<div class="signup">
+	<h1>Sign Up</h1>
+	<form on:submit="signup(event)">
+		<div class="border">
+			<h2>Pick a username, email, and password</h2>
+			<label data-valid={usernameValid}>
+				<input ref:username bind:value=username type="text" name="username" placeholder="Pick a username" required="required">
+				{#if usernameValid === false}
+					<div class="message">{usernameMessage}</div>
+				{/if}
+			</label>
+			<label data-valid={emailValid}>
+				<input bind:value=email type="email" name="email" placeholder="Email Address" required="required">
+				{#if emailValid === false}
+					<div class="message">{emailMessage}</div>
+				{/if}
+			</label>
+			<label data-valid={passwordValid}>
+				<input bind:value=password type="password" name="password" placeholder="Create a password" required="required">
+				{#if passwordValid === false}
+					<div class="message">{passwordMessage}</div>
+				{/if}
+			</label>
+		</div>
+		<button class="button primary {submittable ? '' : 'disabled'}" type="submit">Sign Up</button>
+	</form>
+	<div class="divider"></div>
+	<h3>
+		Already have an account?&nbsp;&nbsp;
+		<a href="/login">Log In</a>
+	</h3>
+</div>
+
+<script>
+	// THIS IS BROKEN FOR SOME WACKO REASON, SO JUST INLINING IT:
+	// SEE: https://github.com/rollup/rollup/issues/2461
+	// import debounce from '../_services/just/debounce'
+	function debounce(t,n,i){var r;return function(){if(!n)return t.apply(this,arguments);var u=this,e=arguments,o=i&&!r;return clearTimeout(r),r=setTimeout(function(){if(r=null,!o)return t.apply(u,e)},n),o?t.apply(this,arguments):void 0}}
+	const validate = debounce(cb => cb(), 500)
+	const usernameRegex = /^[a-zA-Z0-9][a-zA-Z0-9-]{1,37}[a-zA-Z0-9]$/
+
+	export default {
+		data() {
+			return {
+				username: '',
+				usernameValid: 'inert',
+				usernameMessage: '',
+				email: '',
+				emailValid: 'inert',
+				emailMessage: '',
+				password: '',
+				passwordValid: 'inert',
+				passwordMessage: '',
+			}
+		},
+		computed: {
+			submittable: ({ usernameValid, emailValid, passwordValid }) => usernameValid === true && emailValid === true && passwordValid === true,
+		},
+		onstate({ changed, current, previous }) {
+			if (previous) {
+				if (changed.username) {
+					let message = ''
+					const length = current.username.length
+					if (length < 1) {
+						this.set({ usernameValid: 'inert', usernameMessage: message })
+					} else if (length < 3) {
+						this.set({ usernameValid: false, usernameMessage: 'Username is too short (minimum 3 characters).' })
+					} else if (length > 39) {
+						this.set({ usernameValid: false, usernameMessage: 'Username is too long (maximum is 39 characters).' })
+					} else if (!usernameRegex.test(current.username)) {
+						this.set({
+							usernameValid: false,
+							usernameMessage: 'Username may only contain alphanumeric characters or single hyphens, and cannot begin or end with a hyphen.',
+						})
+					} else {
+						this.set({ usernameValid: 'inert', usernameMessage: '' })
+						validate(async() => {
+							const fetched = await fetch('/auth/validate.json', {
+								method: 'POST',
+								headers: { 'Content-Type': 'application/json' },
+								credentials: 'same-origin',
+								body: JSON.stringify({ key: 'username', value: current.username })
+							});
+							const res = await fetched.json()
+							this.set({ usernameValid: res.valid, usernameMessage: res.message })
+						})
+					}
+				}
+				if (changed.email) {
+					validate(async() => {
+						const fetched = await fetch('/auth/validate.json', {
+							method: 'POST',
+							headers: { 'Content-Type': 'application/json' },
+							credentials: 'same-origin',
+							body: JSON.stringify({ key: 'email', value: current.email })
+						});
+						const res = await fetched.json()
+						this.set({ emailValid: res.valid, emailMessage: res.message })
+					})
+				}
+				if (changed.password) {
+					const length = current.password.length
+					const valid = length < 1 ? 'inert' : length >= 8
+					this.set({ passwordValid: valid, passwordMessage: valid ? '' : 'Password must be 8 or more characters.' })
+				}
+			}
+		},
+		oncreate() {
+			// for some reason, it's not ready until clearing the stack
+			setTimeout(() => this.refs.username.focus(), 0)
+		},
+		methods: {
+			signup: async function(event) {
+				event.preventDefault()
+				const { submittable } = this.get()
+				if (submittable) {
+					const { username, email, password } = this.get()
+					const fetched = await fetch('/auth/signup', {
+						method: 'POST',
+						headers: { 'Content-Type': 'application/json' },
+						credentials: 'same-origin',
+						body: JSON.stringify({ username, email, password })
+					});
+					const res = await fetched.json()
+					if (res.error) {
+						// handle the error!!!!
+						console.log(res.error)
+					} else {
+						this.store.set({ user: res.user })
+						window.location = '/'
+					}
+				}
+			},
+		},
+	}
+</script>
+
+<style>
+	.border {
+		margin: 0 0 1em;
+		padding: 1em;
+		border: 1px solid #aa1e1e;
+	}
+	label {
+		position: relative;
+		display: flex;
+	}
+	label[data-valid="true"]::after,
+	label[data-valid="false"]::after {
+		content: '';
+		position: absolute;
+		top: 14px;
+		right: 14px;
+		width: 22px;
+		height: 22px;
+		background: url(/svg/valid-good.svg) no-repeat center transparent;
+		background-size: cover;
+	}
+	label[data-valid="false"] input[type="text"],
+	label[data-valid="false"] input[type="email"],
+	label[data-valid="false"] input[type="password"] {
+		border: 1px solid red;
+		box-shadow: 0 0 0 3px red;
+	}
+	label[data-valid="false"]::after {
+		background-image: url(/svg/valid-bad.svg);
+	}
+	.popup {
+		position: absolute;
+		width: 100%;
+		margin: -2.5rem 0 0 1.2rem;
+	}
+	input[type="text"],
+	input[type="email"],
+	input[type="password"] {
+		margin: 0 0 1rem;
+		padding: 1rem 4.5rem 1rem 1rem;
+		width: 100%;
+	}
+	input[type="password"] {
+		margin: 0;
+	}
+	.message {
+		padding: 1rem 3rem 1rem 1rem;
+	}
+	.button {
+		width: 100%;
+		margin: 0 0 6px;
+		padding: 1.2rem;
+	}
+</style>
