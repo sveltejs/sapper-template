@@ -6,7 +6,7 @@
 
 <p>{error.message}</p>
 
-{#if NODE_ENV === 'development'}
+{#if NODE_ENV === 'development' && error.stack}
 	<pre>{error.stack}</pre>
 {/if}
 
@@ -34,7 +34,7 @@
 
 <script>
 	export default {
-		helpers {
+		helpers: {
 			NODE_ENV: process.env.NODE_ENV
 		}
 	};
