@@ -8,7 +8,7 @@
 		<li><a rel=prefetch class='{segment === "blog" ? "selected" : ""}' href='blog'>blog</a></li>
 
 		{#if $user}
-			<li><span>sign out</span></li>
+			<li><span on:click="logout()">sign out</span></li>
 		{:else}
 			<li><a class='{segment === "login" ? "selected" : ""}' href='login'>log in</a></li>
 			<li><a class='{segment === "signup" ? "selected" : ""}' href='signup'>sign up</a></li>
@@ -16,6 +16,16 @@
 
 	</ul>
 </nav>
+
+<script>
+	export default {
+		methods: {
+			logout() {
+				this.store.get().logout()
+			}
+		}
+	};
+</script>
 
 <style>
 	nav {
