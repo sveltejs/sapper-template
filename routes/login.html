@@ -3,3 +3,57 @@
 </svelte:head>
 
 <h1>Log In</h1>
+
+<form on:submit=submit(event)>
+	<div class="border">
+		<label>
+			<input ref:username placeholder="Username" type="text" name="username" required="required">
+		</label>
+		<label>
+			<input ref:password placeholder="Password" type="password" name="password" required="required">
+		</label>
+	</div>
+	<button type="submit" class="button">Log In</button>
+</form>
+
+<script>
+	export default {
+		methods: {
+			submit: async function(event) {
+				event.preventDefault();
+				const response = await fetch('/auth/local/login', {
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json' },
+					credentials: 'same-origin',
+					body: JSON.stringify({ username: this.refs.username.value, password: this.refs.password.value })
+				});
+				const user = await response.json();
+				this.store.set({ user });
+				window.location = '/';
+			}
+		}
+	};
+</script>
+
+<style>
+	.border {
+		margin: 0 0 1em;
+		padding: 1em;
+		border: 1px solid #aa1e1e;
+	}
+	label {
+		display: flex;
+	}
+	input[type="text"],
+	input[type="password"] {
+		margin: 0.5em 0;
+		padding: 1em 4.5em 1em 1em;
+		width: 100%;
+	}
+	.button {
+		width: 100%;
+		margin: 0 0 1em;
+		padding: 1.2em;
+		font-size: 1em;
+	}
+</style>

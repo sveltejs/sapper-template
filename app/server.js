@@ -3,10 +3,10 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import { authSetup } from './auth/setup';
+import { authValidate } from './auth/validate';
 import sapper from 'sapper';
 import compression from 'compression';
 import { Store } from 'svelte/store.js';
-// import { validate } from '../routes/_services/auth-check.js';
 import { manifest } from './manifest/server.js';
 
 const { PORT, NODE_ENV } = process.env;
@@ -25,9 +25,8 @@ authSetup(app)
 app.use(sapper({
 	manifest,
 	store: req => {
-		// const user = validate(req);
-		// return new Store({ user: user.unauthorized ? null : user });
-		return new Store({ user: null });
+		const user = authValidate(req);
+		return new Store({ user: user.unauthorized ? null : user });
 	},
 }))
 

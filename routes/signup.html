@@ -2,38 +2,37 @@
 	<title>Sign Up</title>
 </svelte:head>
 
-<div class="signup">
-	<h1>Sign Up</h1>
-	<form on:submit="signup(event)">
-		<div class="border">
-			<h2>Pick a username, email, and password</h2>
-			<label data-valid={usernameValid}>
-				<input ref:username bind:value=username type="text" name="username" placeholder="Pick a username" required="required">
-				{#if usernameValid === false}
-					<div class="message">{usernameMessage}</div>
-				{/if}
-			</label>
-			<label data-valid={emailValid}>
-				<input bind:value=email type="email" name="email" placeholder="Email Address" required="required">
-				{#if emailValid === false}
-					<div class="message">{emailMessage}</div>
-				{/if}
-			</label>
-			<label data-valid={passwordValid}>
-				<input bind:value=password type="password" name="password" placeholder="Create a password" required="required">
-				{#if passwordValid === false}
-					<div class="message">{passwordMessage}</div>
-				{/if}
-			</label>
-		</div>
-		<button class="button primary {submittable ? '' : 'disabled'}" type="submit">Sign Up</button>
-	</form>
-	<div class="divider"></div>
-	<h3>
-		Already have an account?&nbsp;&nbsp;
-		<a href="/login">Log In</a>
-	</h3>
-</div>
+<h1>Sign Up</h1>
+
+<form on:submit="signup(event)">
+	<div class="border">
+		<h2>Pick a username, email, and password</h2>
+		<label data-valid={usernameValid}>
+			<input ref:username bind:value=username type="text" name="username" placeholder="Pick a username" required="required">
+			{#if usernameValid === false}
+				<div class="message">{usernameMessage}</div>
+			{/if}
+		</label>
+		<label data-valid={emailValid}>
+			<input bind:value=email type="email" name="email" placeholder="Email Address" required="required">
+			{#if emailValid === false}
+				<div class="message">{emailMessage}</div>
+			{/if}
+		</label>
+		<label data-valid={passwordValid}>
+			<input bind:value=password type="password" name="password" placeholder="Create a password" required="required">
+			{#if passwordValid === false}
+				<div class="message">{passwordMessage}</div>
+			{/if}
+		</label>
+	</div>
+	<button class="button primary {submittable ? '' : 'disabled'}" type="submit">Sign Up</button>
+</form>
+
+<h3>
+	Already have an account?&nbsp;&nbsp;
+	<a href="/login">Log In</a>
+</h3>
 
 <script>
 	// THIS IS BROKEN FOR SOME WACKO REASON, SO JUST INLINING IT:
@@ -169,27 +168,20 @@
 	label[data-valid="false"]::after {
 		background-image: url(/svg/valid-bad.svg);
 	}
-	.popup {
-		position: absolute;
-		width: 100%;
-		margin: -2.5rem 0 0 1.2rem;
-	}
 	input[type="text"],
 	input[type="email"],
 	input[type="password"] {
-		margin: 0 0 1rem;
-		padding: 1rem 4.5rem 1rem 1rem;
+		margin: 0.5em 0;
+		padding: 1em 4.5em 1em 1em;
 		width: 100%;
 	}
-	input[type="password"] {
-		margin: 0;
-	}
 	.message {
-		padding: 1rem 3rem 1rem 1rem;
+		padding: 1em 3em 1em 1em;
 	}
 	.button {
 		width: 100%;
-		margin: 0 0 6px;
-		padding: 1.2rem;
+		margin: 0 0 1em;
+		padding: 1.2em;
+		font-size: 1em;
 	}
 </style>
