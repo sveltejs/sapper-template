@@ -34,7 +34,6 @@ export function authSetup(app) {
 
 	app.post('/auth/signup', async(req, res, next) => {
 		try {
-			debugger
 			const { username, email, password } = req.body;
 
 			const userExists = db.find('username', username);

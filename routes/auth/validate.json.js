@@ -7,7 +7,6 @@ export async function post(req, res) {
 	res.writeHead(200, { 'Content-Type': 'application/json' });
 	try {
 		if (req.body.key === 'username') {
-			debugger
 			const found = db.find(req.body.key, req.body.value);
 			if (found) {
 				message = 'That username is already in use.';
@@ -18,7 +17,6 @@ export async function post(req, res) {
 			if (!valid) {
 				message = 'Email is invalid.';
 			} else {
-				debugger
 				const found = db.find(req.body.key, req.body.value);
 				if (found) {
 					message = 'Email is already taken.';

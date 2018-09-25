@@ -1,17 +1,19 @@
 <h1>You are now logged in!</h1>
 
-<figure>
-	{#if $user.username === 'general-zod'}
+{#if $user.username === 'general-zod'}
+	<figure>
 		<img alt='Zod' src='zod.png'>
 		<figcaption>Kneel before Zod!</figcaption>
-	{:else}
+	</figure>
+{:else}
+	<figure>
 		<img alt='Super' src='super.png'>
 		<figcaption>Up, up, and away!</figcaption>
-	{/if}
-</figure>
+	</figure>
+{/if}
 
 <style>
-	h1, figure, p {
+	h1, figure {
 		text-align: center;
 		margin: 0 auto;
 	}
