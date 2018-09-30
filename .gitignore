@@ -7,4 +7,4 @@ yarn-error.log
 /templates/.*
 /export/
 /build/
-/src/manifest/
+/src/__sapper__/
