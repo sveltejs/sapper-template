@@ -3,5 +3,4 @@ node_modules
 yarn.lock
 yarn-error.log
 /cypress/screenshots/
-/templates/.*
 /__sapper__/
