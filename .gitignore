@@ -2,5 +2,6 @@
 node_modules
 yarn.lock
 yarn-error.log
+package-lock.json
 /cypress/screenshots/
 /__sapper__/
