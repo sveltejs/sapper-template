@@ -1,3 +1,20 @@
+<script context="module">
+  export async function preload({ params, query }) {
+    const res = await this.fetch(`blog/${params.slug}.json`);
+    const data = await res.json();
+
+    if (res.status === 200) {
+      return { post: data };
+    } else {
+      this.error(res.status, data.message);
+    }
+  };
+</script>
+
+<script>
+  export let post;
+</script>
+
 <svelte:head>
   <title>{post.title}</title>
 </svelte:head>
@@ -24,10 +41,10 @@
 
   .content :global(pre) {
     background-color: #f9f9f9;
-    box-shadow: inset 1px 1px 5px rgba(0,0,0,0.05);
-    padding: 0.5em;
     border-radius: 2px;
+    box-shadow: inset 1px 1px 5px rgba(0,0,0,0.05);
     overflow-x: auto;
+    padding: 0.5em;
   }
 
   .content :global(pre) :global(code) {
@@ -43,20 +60,3 @@
     margin: 0 0 0.5em 0;
   }
 </style>
-
-<script>
-  export default {
-    async preload({ params, query }) {
-      // the `slug` parameter is available because
-      // this file is called [slug].html
-      const res = await this.fetch(`blog/${params.slug}.json`);
-      const data = await res.json();
-
-      if (res.status === 200) {
-        return { post: data };
-      } else {
-        this.error(res.status, data.message);
-      }
-    }
-  };
-</script>

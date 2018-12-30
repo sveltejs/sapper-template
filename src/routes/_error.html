@@ -1,3 +1,10 @@
+<script>
+  let dev = process.env.NODE_ENV === 'development'
+
+  export let error;
+  export let status;
+</script>
+
 <svelte:head>
   <title>{status}</title>
 </svelte:head>
@@ -31,11 +38,3 @@
     }
   }
 </style>
-
-<script>
-  export default {
-    helpers: {
-      dev: process.env.NODE_ENV === 'development'
-    }
-  };
-</script>
