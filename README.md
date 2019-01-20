@@ -1,9 +1,12 @@
 # sapper-template
 
-The default [Sapper](https://github.com/sveltejs/sapper) template. To clone it and get started:
+The default [Sapper](https://github.com/sveltejs/sapper) template, with branches for Rollup and webpack. To clone it and get started:
 
 ```bash
-npx degit sveltejs/sapper-template my-app
+# for Rollup
+npx degit sveltejs/sapper-template#rollup my-app
+# for webpack
+npx degit sveltejs/sapper-template#webpack my-app
 cd my-app
 npm install # or yarn!
 npm run dev
@@ -12,8 +15,6 @@ npm run dev
 Open up [localhost:3000](http://localhost:3000) and start clicking around.
 
 Consult [sapper.svelte.technology](https://sapper.svelte.technology) for help getting started.
-
-*[Click here for the Rollup version of this template](https://github.com/sveltejs/sapper-template/tree/rollup)*
 
 ## Structure
 
@@ -53,14 +54,14 @@ There are three simple rules for naming the files that define your routes:
 * Files and directories with a leading underscore do *not* create routes. This allows you to colocate helper modules and components with the routes that depend on them — for example you could have a file called `routes/_helpers/datetime.js` and it would *not* create a `/_helpers/datetime` route
 
 
-## Webpack config
+## Bundler config
 
-Sapper uses webpack to provide code-splitting, dynamic imports and hot module reloading, as well as compiling your Svelte components. As long as you don't do anything daft, you can edit the configuration files to add whatever loaders and plugins you'd like.
+Sapper uses Rollup or webpack to provide code-splitting and dynamic imports, as well as compiling your Svelte components. With webpack, it also provides hot module reloading. As long as you don't do anything daft, you can edit the configuration files to add whatever plugins you'd like.
 
 
 ## Production mode and deployment
 
-To start a production version of your app, run `npm run build && npm start`. This will disable hot module replacement, and activate the appropriate webpack plugins.
+To start a production version of your app, run `npm run build && npm start`. This will disable live reloading, and activate the appropriate bundler plugins.
 
 You can deploy your application to any environment that supports Node 8 or above. As an example, to deploy to [Now](https://zeit.co/now), run these commands:
 
@@ -70,7 +71,7 @@ now
 ```
 
 
-## Using external components
+## Using external components with webpack
 
 When using Svelte components installed from npm, such as [@sveltejs/svelte-virtual-list](https://github.com/sveltejs/svelte-virtual-list), Svelte needs the original component source (rather than any precompiled JavaScript that ships with the component). This allows the component to be rendered server-side, and also keeps your client-side app smaller.
 
