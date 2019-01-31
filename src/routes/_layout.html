@@ -1,8 +1,8 @@
-<Nav segment={child.segment}/>
+<script>
+	import Nav from '../components/Nav.html';
 
-<main>
-	<svelte:component this={child.component} {...child.props}/>
-</main>
+	export let child;
+</script>
 
 <style>
 	main {
@@ -15,10 +15,8 @@
 	}
 </style>
 
-<script>
-	export default {
-		components: {
-			Nav: '../components/Nav.html'
-		}
-	};
-</script>
+<Nav segment={child.segment}/>
+
+<main>
+	<svelte:component this={child.component} {...child.props}/>
+</main>
