@@ -1,9 +1,11 @@
 #!/bin/bash
 cd "$(dirname $0)"/..
 
-DEFAULT=$1
-ROLLUP=$2
-WEBPACK=$3
+DEFAULT=${1:-master}
+ROLLUP=${2:-rollup}
+WEBPACK=${3:-webpack}
+
+echo "Creating $ROLLUP and $WEBPACK branches from $DEFAULT"
 
 # make sure we're on master, and delete the $ROLLUP and $WEBPACK branches
 git symbolic-ref HEAD "refs/heads/$DEFAULT"
