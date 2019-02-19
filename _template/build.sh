@@ -1,10 +1,12 @@
 #!/bin/bash
 cd "$(dirname $0)"/..
 
-# write out SSH key
-[ "$SSH_KEY" ] || exit 1
-echo "$SSH_KEY" > ~/.ssh/id_rsa
-chmod 600 ~/.ssh/id_rsa
+if [ "$CI" ]; then
+	# write out SSH key
+	[ "$SSH_KEY" ] || exit 1
+	echo "$SSH_KEY" > ~/.ssh/id_rsa
+	chmod 600 ~/.ssh/id_rsa
+fi
 
 # branch names
 DEFAULT=master
