@@ -16,7 +16,7 @@ module.exports = {
 		module: {
 			rules: [
 				{
-					test: /\.html|.svelte$/,
+					test: /\.html$|.svelte$/,
 					use: {
 						loader: 'svelte-loader',
 						options: {
@@ -51,7 +51,7 @@ module.exports = {
 		module: {
 			rules: [
 				{
-					test: /\.html|.svelte$/,
+					test: /\.html$|.svelte$/,
 					use: {
 						loader: 'svelte-loader',
 						options: {
