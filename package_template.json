@@ -44,6 +44,11 @@
       }
     },
     "webpack": {
+      "scripts": {
+        "dev": "sapper dev --bundler=webpack",
+        "build": "sapper build --bundler=webpack",
+        "export": "sapper export --bundler=webpack"
+      },
       "devDependencies": {
         "svelte-loader": "^2.9.0",
         "webpack": "^4.7.0"
