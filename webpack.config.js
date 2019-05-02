@@ -5,18 +5,18 @@ const pkg = require('./package.json');
 const mode = process.env.NODE_ENV;
 const dev = mode === 'development';
 
+const extensions = ['.mjs', '.js', '.json', '.svelte', '.html'];
+const mainFields = ['svelte', 'module', 'browser', 'main'];
+
 module.exports = {
 	client: {
 		entry: config.client.entry(),
 		output: config.client.output(),
-		resolve: {
-			extensions: ['.js', '.json', '.html'],
-			mainFields: ['svelte', 'module', 'browser', 'main']
-		},
+		resolve: { extensions, mainFields },
 		module: {
 			rules: [
 				{
-					test: /\.html$/,
+					test: /\.(svelte|html)$/,
 					use: {
 						loader: 'svelte-loader',
 						options: {
@@ -43,15 +43,12 @@ module.exports = {
 		entry: config.server.entry(),
 		output: config.server.output(),
 		target: 'node',
-		resolve: {
-			extensions: ['.js', '.json', '.html'],
-			mainFields: ['svelte', 'module', 'browser', 'main']
-		},
+		resolve: { extensions, mainFields },
 		externals: Object.keys(pkg.dependencies).concat('encoding'),
 		module: {
 			rules: [
 				{
-					test: /\.html$/,
+					test: /\.(svelte|html)$/,
 					use: {
 						loader: 'svelte-loader',
 						options: {
