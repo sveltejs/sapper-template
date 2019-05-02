@@ -9,9 +9,9 @@ if [ "$CI" ]; then
 fi
 
 # branch names
-DEFAULT=v3
-ROLLUP=rollup-v3
-WEBPACK=webpack-v3
+DEFAULT=master
+ROLLUP=rollup
+WEBPACK=webpack
 
 ./create-branches.sh $DEFAULT $ROLLUP $WEBPACK
 
