@@ -8,5 +8,4 @@ env:
 branches:
   only:
     - master
-    - v3
 script: _template/build.sh
