@@ -22,7 +22,7 @@ module.exports = {
 						options: {
 							dev,
 							hydratable: true,
-							hotReload: true
+							hotReload: false // pending https://github.com/sveltejs/svelte/issues/2377
 						}
 					}
 				}
@@ -30,7 +30,8 @@ module.exports = {
 		},
 		mode,
 		plugins: [
-			dev && new webpack.HotModuleReplacementPlugin(),
+			// pending https://github.com/sveltejs/svelte/issues/2377
+			// dev && new webpack.HotModuleReplacementPlugin(),
 			new webpack.DefinePlugin({
 				'process.browser': true,
 				'process.env.NODE_ENV': JSON.stringify(mode)
