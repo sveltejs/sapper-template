@@ -33,7 +33,6 @@
         "@babel/plugin-transform-runtime": "^7.0.0",
         "@babel/preset-env": "^7.0.0",
         "@babel/runtime": "^7.0.0",
-        "chokidar": "^2.0.4",
         "rollup": "^1.0.0",
         "rollup-plugin-babel": "^4.0.2",
         "rollup-plugin-commonjs": "^9.1.6",
