@@ -43,4 +43,4 @@
 	<figcaption>HIGH FIVE!</figcaption>
 </figure>
 
-<p><strong>Try editing this file (routes/index.svelte) to test live reloading.</strong></p>
+<p><strong>Try editing this file (src/routes/index.svelte) to test live reloading.</strong></p>
