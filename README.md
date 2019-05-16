@@ -79,7 +79,7 @@ When using Svelte components installed from npm, such as [@sveltejs/svelte-virtu
 Because of that, it's essential that webpack doesn't treat the package as an *external dependency*. You can either modify the `externals` option in [webpack/server.config.js](webpack/server.config.js), or simply install the package to `devDependencies` rather than `dependencies`, which will cause it to get bundled (and therefore compiled) with your app:
 
 ```bash
-yarn add -D @sveltejs/svelte-virtual-list
+npm install -D @sveltejs/svelte-virtual-list
 ```
 
 
