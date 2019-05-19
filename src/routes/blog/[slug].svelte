@@ -1,12 +1,21 @@
-<svelte:head>
-	<title>{post.metadata.title}</title>
-</svelte:head>
+<script context="module">
+	export async function preload({ params, query }) {
+		// the `slug` parameter is available because
+		// this file is called [slug].html
+		const res = await this.fetch(`blog/${params.slug}.json`);
+		const data = await res.json();
 
-<h1>{post.metadata.title}</h1>
+		if (res.status === 200) {
+			return { post: data };
+		} else {
+			this.error(res.status, data.message);
+		}
+	}
+</script>
 
-<div class='content'>
-	{@html post.html}
-</div>
+<script>
+	export let post;
+</script>
 
 <style>
 	/*
@@ -44,19 +53,12 @@
 	}
 </style>
 
-<script>
-	export default {
-		async preload({ params, query }) {
-			// the `slug` parameter is available because
-			// this file is called [slug].html
-			const res = await this.fetch(`blog/${params.slug}.json`);
-			const data = await res.json();
+<svelte:head>
+	<title>{post.metadata.title}</title>
+</svelte:head>
 
-			if (res.status === 200) {
-				return { post: data };
-			} else {
-				this.error(res.status, data.message);
-			}
-		}
-	};
-</script>
+<h1>{post.metadata.title}</h1>
+
+<div class='content'>
+	{@html post.html}
+</div>

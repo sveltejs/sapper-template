@@ -8,7 +8,10 @@ pubdate: 2018-07-21
 Create a new project, using [degit](https://github.com/Rich-Harris/degit):
 
 ```
-npx degit sveltejs/sapper-template my-app
+# for Rollup
+npx degit sveltejs/sapper-template#rollup my-app
+# for webpack
+npx degit sveltejs/sapper-template#webpack my-app
 cd my-app
 npm install # or yarn!
 npm run dev
