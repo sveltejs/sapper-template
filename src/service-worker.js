@@ -1,4 +1,4 @@
-import { timestamp, files, shell, routes } from '../__sapper__/service-worker.js';
+import { timestamp, files, shell, routes } from '@sapper/service-worker';
 
 const ASSETS = `cache${timestamp}`;
 
@@ -48,12 +48,12 @@ self.addEventListener('fetch', event => {
 		return;
 	}
 
-	// for pages, you might want to serve a shell `index.html` file,
+	// for pages, you might want to serve a shell `service-worker-index.html` file,
 	// which Sapper has generated for you. It's not right for every
 	// app, but if it's right for yours then uncomment this section
 	/*
 	if (url.origin === self.origin && routes.find(route => route.pattern.test(url.pathname))) {
-		event.respondWith(caches.match('/index.html'));
+		event.respondWith(caches.match('/service-worker-index.html'));
 		return;
 	}
 	*/
