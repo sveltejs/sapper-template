@@ -27,7 +27,9 @@ export default {
 				hydratable: true,
 				emitCss: true
 			}),
-			resolve(),
+			resolve({
+				browser: true
+			}),
 			commonjs(),
 
 			legacy && babel({
