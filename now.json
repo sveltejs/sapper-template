@@ -1,0 +1,12 @@
+{
+    "version": 2,
+    "name": "sapper-template",
+    "alias": "sapper-template",
+    "builds": [
+      {
+        "src": "__sapper__/build/index.js",
+        "use": "now-sapper"
+      }
+    ],
+    "routes": [{ "src": "/(.*)", "dest": "__sapper__/build/index.js" }]
+  } 

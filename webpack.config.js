@@ -1,6 +1,5 @@
 const webpack = require('webpack');
 const config = require('sapper/config/webpack.js');
-const pkg = require('./package.json');
 
 const mode = process.env.NODE_ENV;
 const dev = mode === 'development';
@@ -45,7 +44,7 @@ module.exports = {
 		output: config.server.output(),
 		target: 'node',
 		resolve: { extensions, mainFields },
-		externals: Object.keys(pkg.dependencies).concat('encoding'),
+		externals: [].concat('encoding'),
 		module: {
 			rules: [
 				{
