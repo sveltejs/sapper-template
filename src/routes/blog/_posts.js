@@ -34,7 +34,7 @@ const posts = [
 			<h2>Step one</h2>
 			<p>Create a new project, using <a href='https://github.com/Rich-Harris/degit'>degit</a>:</p>
 
-			<pre><code>npx degit sveltejs/sapper-template#rollup my-app
+			<pre><code>npx degit "sveltejs/sapper-template#rollup" my-app
 			cd my-app
 			npm install # or yarn!
 			npm run dev
