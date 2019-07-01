@@ -34,7 +34,7 @@
 
 <svelte:head>
 	<title>Sapper project template</title>
-  <meta name="Description" content="Sapper project template">
+	<meta name="Description" content="Sapper project template">
 </svelte:head>
 
 <h1>Great success!</h1>
