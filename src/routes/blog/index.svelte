@@ -19,6 +19,7 @@
 
 <svelte:head>
 	<title>Blog</title>
+  <meta name="Description" content="Sapper project template blog posts">
 </svelte:head>
 
 <h1>Recent posts</h1>

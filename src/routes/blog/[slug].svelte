@@ -55,6 +55,7 @@
 
 <svelte:head>
 	<title>{post.title}</title>
+  <meta name="Description" content="Sapper project template {post.title} post">
 </svelte:head>
 
 <h1>{post.title}</h1>
