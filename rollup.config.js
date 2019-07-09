@@ -12,6 +12,7 @@ const dev = mode === 'development';
 const legacy = !!process.env.SAPPER_LEGACY_BUILD;
 
 const onwarn = (warning, onwarn) => (warning.code === 'CIRCULAR_DEPENDENCY' && /[/\\]@sapper[/\\]/.test(warning.message)) || onwarn(warning);
+const dedupe = importee => importee === 'svelte' || importee.startsWith('svelte/');
 
 export default {
 	client: {
@@ -28,7 +29,8 @@ export default {
 				emitCss: true
 			}),
 			resolve({
-				browser: true
+				browser: true,
+				dedupe
 			}),
 			commonjs(),
 
@@ -69,7 +71,9 @@ export default {
 				generate: 'ssr',
 				dev
 			}),
-			resolve(),
+			resolve({
+				dedupe
+			}),
 			commonjs()
 		],
 		external: Object.keys(pkg.dependencies).concat(
