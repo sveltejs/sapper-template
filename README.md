@@ -46,7 +46,7 @@ There are three simple rules for naming the files that define your routes:
 
 The [static](static) directory contains any static assets that should be available. These are served using [sirv](https://github.com/lukeed/sirv).
 
-In your [service-worker.js](app/service-worker.js) file, you can import these as `files` from the generated manifest...
+In your [service-worker.js](src/service-worker.js) file, you can import these as `files` from the generated manifest...
 
 ```js
 import { files } from '@sapper/service-worker';
