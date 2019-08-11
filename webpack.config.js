@@ -6,7 +6,10 @@ const pkg = require('./package.json');
 const mode = process.env.NODE_ENV;
 const dev = mode === 'development';
 
-const alias = { svelte: path.resolve('node_modules', 'svelte') };
+const alias = {
+	svelte: path.resolve('node_modules', 'svelte'),
+	'~': `${__dirname}/src`
+};
 const extensions = ['.mjs', '.js', '.json', '.svelte', '.html'];
 const mainFields = ['svelte', 'module', 'browser', 'main'];
 
