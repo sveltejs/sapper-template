@@ -92,18 +92,7 @@ npm install -g now
 now
 ```
 
-If using Sapper with SSR on Now, it is recommended to use the [now-sapper](https://github.com/thgh/now-sapper) Builder, with a `now.json` config like below:
-
-```
-{
-  "version": 2,
-    "builds": [
-    { "src": "package.json", "use": "now-sapper" }
-  ],
-}
-```
-
-You should read the [usage section](https://github.com/thgh/now-sapper#basic-usage) of the repository for more information.
+If using Sapper with SSR on Now, it is recommended to use the [now-sapper](https://github.com/thgh/now-sapper) Builder, you can find instructions on how to do so in the [README](https://github.com/thgh/now-sapper#basic-usage).
 
 
 ## Using external components
