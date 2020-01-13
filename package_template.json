@@ -1,6 +1,6 @@
 {
-  "name": "TODO",
-  "description": "TODO",
+  "name": "Sapper template",
+  "description": "Sapper template",
   "version": "0.0.1",
   "scripts": {
     "dev": "sapper dev",
