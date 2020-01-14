@@ -37,6 +37,19 @@ Open up [localhost:3000](http://localhost:3000) and start clicking around.
 
 Consult [sapper.svelte.dev](https://sapper.svelte.dev) for help getting started.
 
+### Running tests
+
+Functional tests are located in the [`cypress/integration`](cypress/integration) folder. Prior to running tests, you'll need to install [cypress](https://www.cypress.io/) globally:
+```bash
+npm i -g cypress
+```
+
+Then you can run the tests using the following commands :
+```bash
+npm t
+npm run cy:run
+npm run cy:open
+```
 
 ## Structure
 
