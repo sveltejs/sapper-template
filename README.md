@@ -92,7 +92,7 @@ npm install -g now
 now
 ```
 
-If using Sapper with SSR on Now, it is recommended to use the [now-sapper](https://github.com/thgh/now-sapper) Builder, you can find instructions on how to do so in the [README](https://github.com/thgh/now-sapper#basic-usage).
+If your app can't be exported to a static site, you can use the [now-sapper](https://github.com/thgh/now-sapper) builder. You can find instructions on how to do so in its [README](https://github.com/thgh/now-sapper#basic-usage).
 
 
 ## Using external components
