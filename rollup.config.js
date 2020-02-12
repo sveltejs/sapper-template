@@ -1,3 +1,4 @@
+import alias from '@rollup/plugin-alias';
 import resolve from '@rollup/plugin-node-resolve';
 import replace from '@rollup/plugin-replace';
 import commonjs from '@rollup/plugin-commonjs';
@@ -26,6 +27,12 @@ export default {
 				dev,
 				hydratable: true,
 				emitCss: true
+			}),
+			alias({
+				entries: [{
+					find: `@sapper`,
+					replacement: `${__dirname}/src/node_modules/@sapper`
+				}]
 			}),
 			resolve({
 				browser: true,
@@ -70,6 +77,12 @@ export default {
 				generate: 'ssr',
 				dev
 			}),
+			alias({
+				entries: [{
+					find: `@sapper`,
+					replacement: `${__dirname}/src/node_modules/@sapper`
+				}]
+			}),
 			resolve({
 				dedupe: ['svelte']
 			}),
@@ -90,6 +103,12 @@ export default {
 			replace({
 				'process.browser': true,
 				'process.env.NODE_ENV': JSON.stringify(mode)
+			}),
+			alias({
+				entries: [{
+					find: `@sapper`,
+					replacement: `${__dirname}/src/node_modules/@sapper`
+				}]
 			}),
 			commonjs(),
 			!dev && terser()
