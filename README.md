@@ -46,9 +46,7 @@ npm install --save-dev cypress
 
 Then you can run the tests using the following commands :
 ```bash
-npm t
-npm run cy:run
-npm run cy:open
+npm test
 ```
 
 ## Structure
