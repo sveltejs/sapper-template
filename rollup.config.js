@@ -17,6 +17,7 @@ export default {
 	client: {
 		input: config.client.input(),
 		output: config.client.output(),
+		cache: true,
 		plugins: [
 			replace({
 				'process.browser': true,
@@ -31,7 +32,7 @@ export default {
 				browser: true,
 				dedupe: ['svelte']
 			}),
-			commonjs(),
+			commonjs(!dev && { sourceMap: false }),
 
 			legacy && babel({
 				extensions: ['.js', '.mjs', '.html', '.svelte'],
@@ -61,6 +62,7 @@ export default {
 	server: {
 		input: config.server.input(),
 		output: config.server.output(),
+		cache: true,
 		plugins: [
 			replace({
 				'process.browser': false,
@@ -73,7 +75,7 @@ export default {
 			resolve({
 				dedupe: ['svelte']
 			}),
-			commonjs()
+			commonjs(!dev && { sourceMap: false }),
 		],
 		external: Object.keys(pkg.dependencies).concat(
 			require('module').builtinModules || Object.keys(process.binding('natives'))
@@ -85,13 +87,14 @@ export default {
 	serviceworker: {
 		input: config.serviceworker.input(),
 		output: config.serviceworker.output(),
+		cache: true,
 		plugins: [
 			resolve(),
 			replace({
 				'process.browser': true,
 				'process.env.NODE_ENV': JSON.stringify(mode)
 			}),
-			commonjs(),
+			commonjs(!dev && { sourceMap: false }),
 			!dev && terser()
 		],
 
