@@ -4,7 +4,7 @@
 // service of obviousness, we're just going to leave it here.
 
 // This file is called `_posts.js` rather than `posts.js`, because
-// we don't want to create an `/blog/posts` route — the leading
+// we don't want to create a `/blog/posts` route — the leading
 // underscore tells Sapper not to do that.
 
 const posts = [
