@@ -80,6 +80,7 @@ export default {
 			require('module').builtinModules || Object.keys(process.binding('natives'))
 		),
 
+		preserveEntrySignatures: false,
 		onwarn,
 	},
 
@@ -96,6 +97,7 @@ export default {
 			!dev && terser()
 		],
 
+		preserveEntrySignatures: false,
 		onwarn,
 	}
 };
