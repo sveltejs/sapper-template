@@ -80,7 +80,7 @@ export default {
 			require('module').builtinModules || Object.keys(process.binding('natives'))
 		),
 
-		preserveEntrySignatures: false,
+		preserveEntrySignatures: 'strict',
 		onwarn,
 	},
 
