@@ -1,14 +1,35 @@
 # sapper-template
 
-The default [Sapper](https://github.com/sveltejs/sapper) template, with branches for Rollup and webpack. To clone it and get started:
+The default [Sapper](https://github.com/sveltejs/sapper) template, available for Rollup and webpack.
+
+
+## Getting started
+
+
+### Using `degit`
+
+[`degit`](https://github.com/Rich-Harris/degit) is a scaffolding tool that lets you create a directory from a branch in a repository. Use either the `rollup` or `webpack` branch in `sapper-template`:
 
 ```bash
 # for Rollup
-npx degit sveltejs/sapper-template#rollup my-app
+npx degit "sveltejs/sapper-template#rollup" my-app
 # for webpack
-npx degit sveltejs/sapper-template#webpack my-app
+npx degit "sveltejs/sapper-template#webpack" my-app
+```
+
+
+### Using GitHub templates
+
+Alternatively, you can use GitHub's template feature with the [sapper-template-rollup](https://github.com/sveltejs/sapper-template-rollup) or [sapper-template-webpack](https://github.com/sveltejs/sapper-template-webpack) repositories.
+
+
+### Running the project
+
+However you get the code, you can install dependencies and run the project in development mode with:
+
+```bash
 cd my-app
-npm install # or yarn!
+npm install # or yarn
 npm run dev
 ```
 
@@ -46,7 +67,7 @@ There are three simple rules for naming the files that define your routes:
 
 The [static](static) directory contains any static assets that should be available. These are served using [sirv](https://github.com/lukeed/sirv).
 
-In your [service-worker.js](app/service-worker.js) file, you can import these as `files` from the generated manifest...
+In your [service-worker.js](src/service-worker.js) file, you can import these as `files` from the generated manifest...
 
 ```js
 import { files } from '@sapper/service-worker';
@@ -64,19 +85,21 @@ Sapper uses Rollup or webpack to provide code-splitting and dynamic imports, as 
 
 To start a production version of your app, run `npm run build && npm start`. This will disable live reloading, and activate the appropriate bundler plugins.
 
-You can deploy your application to any environment that supports Node 8 or above. As an example, to deploy to [Now](https://zeit.co/now), run these commands:
+You can deploy your application to any environment that supports Node 10 or above. As an example, to deploy to [Vercel Now](https://vercel.com) when using `sapper export`, run these commands:
 
 ```bash
 npm install -g now
 now
 ```
 
+If your app can't be exported to a static site, you can use the [now-sapper](https://github.com/thgh/now-sapper) builder. You can find instructions on how to do so in its [README](https://github.com/thgh/now-sapper#basic-usage).
 
-## Using external components with webpack
+
+## Using external components
 
 When using Svelte components installed from npm, such as [@sveltejs/svelte-virtual-list](https://github.com/sveltejs/svelte-virtual-list), Svelte needs the original component source (rather than any precompiled JavaScript that ships with the component). This allows the component to be rendered server-side, and also keeps your client-side app smaller.
 
-Because of that, it's essential that webpack doesn't treat the package as an *external dependency*. You can either modify the `externals` option under `server` in [webpack.config.js](webpack.config.js), or simply install the package to `devDependencies` rather than `dependencies`, which will cause it to get bundled (and therefore compiled) with your app:
+Because of that, it's essential that the bundler doesn't treat the package as an *external dependency*. You can either modify the `external` option under `server` in [rollup.config.js](rollup.config.js) or the `externals` option in [webpack.config.js](webpack.config.js), or simply install the package to `devDependencies` rather than `dependencies`, which will cause it to get bundled (and therefore compiled) with your app:
 
 ```bash
 npm install -D @sveltejs/svelte-virtual-list
