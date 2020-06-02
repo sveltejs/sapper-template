@@ -1,5 +1,7 @@
 <script>
-	export let segment;
+	import { stores } from "@sapper/app";
+  	const { page } = stores();
+  	$: segment = $page.path.split("/")[1];
 </script>
 
 <style>
@@ -50,7 +52,7 @@
 
 <nav>
 	<ul>
-		<li><a aria-current="{segment === undefined ? 'page' : undefined}" href=".">home</a></li>
+		<li><a aria-current="{segment === '' ? 'page' : undefined}" href=".">home</a></li>
 		<li><a aria-current="{segment === 'about' ? 'page' : undefined}" href="about">about</a></li>
 
 		<!-- for the blog link, we're using rel=prefetch so that Sapper prefetches
