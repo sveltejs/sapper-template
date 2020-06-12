@@ -10,6 +10,7 @@ import pkg from './package.json';
 const mode = process.env.NODE_ENV;
 const dev = mode === 'development';
 const legacy = !!process.env.SAPPER_LEGACY_BUILD;
+const cache = false; // Change to true to increase speed development
 
 const onwarn = (warning, onwarn) => (warning.code === 'CIRCULAR_DEPENDENCY' && /[/\\]@sapper[/\\]/.test(warning.message)) || onwarn(warning);
 
@@ -17,7 +18,7 @@ export default {
 	client: {
 		input: config.client.input(),
 		output: config.client.output(),
-		cache: true,
+		cache,
 		plugins: [
 			replace({
 				'process.browser': true,
@@ -62,7 +63,7 @@ export default {
 	server: {
 		input: config.server.input(),
 		output: config.server.output(),
-		cache: true,
+		cache,
 		plugins: [
 			replace({
 				'process.browser': false,
@@ -87,7 +88,7 @@ export default {
 	serviceworker: {
 		input: config.serviceworker.input(),
 		output: config.serviceworker.output(),
-		cache: true,
+		cache,
 		plugins: [
 			resolve(),
 			replace({
