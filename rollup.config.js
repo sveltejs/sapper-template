@@ -32,7 +32,7 @@ export default {
 				browser: true,
 				dedupe: ['svelte']
 			}),
-			commonjs(!dev && { sourceMap: false }),
+			commonjs({ sourceMap: dev }),
 
 			legacy && babel({
 				extensions: ['.js', '.mjs', '.html', '.svelte'],
