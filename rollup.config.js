@@ -75,7 +75,7 @@ export default {
 			resolve({
 				dedupe: ['svelte']
 			}),
-			commonjs(!dev && { sourceMap: false }),
+			commonjs({ sourceMap: dev }),
 		],
 		external: Object.keys(pkg.dependencies).concat(
 			require('module').builtinModules || Object.keys(process.binding('natives'))
@@ -94,7 +94,7 @@ export default {
 				'process.browser': true,
 				'process.env.NODE_ENV': JSON.stringify(mode)
 			}),
-			commonjs(!dev && { sourceMap: false }),
+			commonjs({ sourceMap: dev }),
 			!dev && terser()
 		],
 
