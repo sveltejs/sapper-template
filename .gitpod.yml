@@ -1,0 +1,6 @@
+tasks:
+  - init: npm install
+    command: npm run dev
+vscode:
+  extensions:
+    - JamesBirtles.svelte-vscode@0.9.3:aT2nc+VyKmuFE9yDTcvKcw==
