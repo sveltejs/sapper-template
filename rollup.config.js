@@ -13,7 +13,7 @@ const legacy = !!process.env.SAPPER_LEGACY_BUILD;
 
 const onwarn = (warning, onwarn) => (warning.code === 'CIRCULAR_DEPENDENCY' && /[/\\]@sapper[/\\]/.test(warning.message)) || onwarn(warning);
 
-export default {
+module.export = {
 	client: {
 		input: config.client.input(),
 		output: config.client.output(),
