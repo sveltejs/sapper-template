@@ -58,6 +58,7 @@ module.exports = {
 						options: {
 							css: false,
 							generate: 'ssr',
+							hydratable: true,
 							dev
 						}
 					}
