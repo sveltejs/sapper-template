@@ -28,6 +28,12 @@ module.exports = {
 							hotReload: false // pending https://github.com/sveltejs/svelte/issues/2377
 						}
 					}
+				},
+				{
+					test: /\.(png|svg|jpg|gif)$/,
+					use: [
+						'file-loader',
+					],
 				}
 			]
 		},
@@ -62,6 +68,12 @@ module.exports = {
 							dev
 						}
 					}
+				},
+				{
+					test: /\.(png|svg|jpg|gif)$/,
+					use: [
+						'file-loader',
+					],
 				}
 			]
 		},

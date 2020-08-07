@@ -1,5 +1,6 @@
 <script>
 	import Nav from '../components/Nav.svelte';
+	import favicon from 'images/favicon.png';
 
 	export let segment;
 </script>
@@ -14,6 +15,10 @@
 		box-sizing: border-box;
 	}
 </style>
+
+<svelte:head>
+	<link rel='icon' type='image/png' href='{favicon}'>
+</svelte:head>
 
 <Nav {segment}/>
 
