@@ -2,8 +2,6 @@
 
 /** This script modifies the project to support TS code in .svelte files like:
   <script lang="ts">
-  	export let name: string;
-  </script>
  
   As well as validating the code for CI.
   */
@@ -17,6 +15,8 @@ const path = require("path")
 const { argv } = require("process")
 
 const projectRoot = argv[2] || path.join(__dirname, "..")
+
+console.log("Adding typescript with rollup")
 
 if(fs.existsSync(path.join(projectRoot, "package.json"))) {
 
@@ -33,7 +33,10 @@ packageJSON.devDependencies = Object.assign(packageJSON.devDependencies, {
   "@rollup/plugin-typescript": "^4.0.0",
   "typescript": "^3.9.3",
   "tslib": "^2.0.0",
-  "@tsconfig/svelte": "^1.0.0"
+  "@tsconfig/svelte": "^1.0.0",
+  "@types/compression": "^1.7.0",
+  "@types/node": "^14.0.27",
+  "@types/polka": "^0.5.1"
 })
 
 // Add script for checking
@@ -66,3 +69,27 @@ function scanFolderAndReplace (dir) {
   }
 
 }
+
+// Edit rollup config
+const rollupConfigPath = path.join(projectRoot, "rollup.config.js")
+let rollupConfig = fs.readFileSync(rollupConfigPath, "utf8")
+
+// Edit imports
+rollupConfig = rollupConfig.replace(`'rollup-plugin-terser';`, `'rollup-plugin-terser';
+import sveltePreprocess from 'svelte-preprocess';
+import typescript from '@rollup/plugin-typescript';`)
+
+// Edit inputs
+rollupConfig = rollupConfig.replace(`input: config.client.input(),`, `input: config.client.input().replace(/\.js$/, '.ts'),`)
+rollupConfig = rollupConfig.replace(`input: config.server.input(),`, `((typeof config.server.input() === 'string') ? config.server.input() : config.server.input().server).replace(/\.js$/, '.ts'),`)
+rollupConfig = rollupConfig.replace(`input: config.serviceworker.input(),`, `input: config.serviceworker.input().replace(/\.js$/, '.ts')`)
+
+// Add preprocess to the svelte config, this is tricky because there's no easy signifier.
+// Instead we look for 'hydratable: true,'
+rollupConfig = rollupConfig.replace(new RegExp('hydratable: true,', "g"), 'hydratable: true,\npreprocess: sveltePreprocess(),')
+
+// Add TypeScript
+rollupConfig = rollupConfig.replace(new RegExp("commonjs(),", "g"), 'commonjs(),\n\t\ttypescript({ sourceMap: dev }),')
+
+// Save rollup config
+fs.writeFileSync(rollupConfigPath, rollupConfig)
