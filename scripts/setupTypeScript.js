@@ -93,3 +93,43 @@ rollupConfig = rollupConfig.replace(new RegExp("commonjs(),", "g"), 'commonjs(),
 
 // Save rollup config
 fs.writeFileSync(rollupConfigPath, rollupConfig)
+
+// Add TSConfig
+const tsconfig = `{
+  "extends": "@tsconfig/svelte/tsconfig.json",
+  "include": ["src/**/*"],
+  "exclude": ["node_modules/*", "__sapper__/*", "public/*"],
+}`
+const tsconfigPath =  path.join(projectRoot, "tsconfig.json")
+fs.writeFileSync(tsconfigPath, tsconfig)
+
+// Delete this script, but not during testing
+if (!argv[2]) {
+  // Remove the script
+  fs.unlinkSync(path.join(__filename))
+
+  // Check for Mac's DS_store file, and if it's the only one left remove it
+  const remainingFiles = fs.readdirSync(path.join(__dirname))
+  if (remainingFiles.length === 1 && remainingFiles[0] === '.DS_store') {
+    fs.unlinkSync(path.join(__dirname, '.DS_store'))
+  }
+
+  // Check if the scripts folder is empty
+  if (fs.readdirSync(path.join(__dirname)).length === 0) {
+    // Remove the scripts folder
+    fs.rmdirSync(path.join(__dirname))
+  }
+}
+
+// Adds the extension recommendation
+fs.mkdirSync(path.join(projectRoot, ".vscode"))
+fs.writeFileSync(path.join(projectRoot, ".vscode", "extensions.json"), `{
+  "recommendations": ["svelte.svelte-vscode"]
+}
+`)
+
+console.log("Converted to TypeScript.")
+
+if (fs.existsSync(path.join(projectRoot, "node_modules"))) {
+  console.log("\nYou will need to re-run your dependency manager to get started.")
+}
