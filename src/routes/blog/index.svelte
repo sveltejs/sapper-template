@@ -1,8 +1,6 @@
 <script context="module">
 	export function preload() {
-		return this.fetch(`blog.json`)
-			.then(r => r.json())
-			.then(posts => {
+		return this.fetch(`blog.json`).then(r => r.json()).then(posts => {
 				return { posts };
 			});
 	}

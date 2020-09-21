@@ -5,21 +5,21 @@ const { argv } = require('process');
 
 const projectRoot = argv[2] || path.join(__dirname, '..');
 
-console.log('Adding typescript with rollup');
+console.log('Adding TypeScript with Rollup');
 
 // Add deps to pkg.json
 const pkgJSONPath = path.join(projectRoot, 'package.json');
 const packageJSON = JSON.parse(fs.readFileSync(pkgJSONPath, 'utf8'));
 packageJSON.devDependencies = Object.assign(packageJSON.devDependencies, {
 	'@rollup/plugin-typescript': '^6.0.0',
-	'@tsconfig/svelte': '^1.0.0',
+	'@tsconfig/svelte': '^1.0.10',
 	'@types/compression': '^1.7.0',
-	'@types/node': '^14.0.27',
+	'@types/node': '^14.11.1',
 	'@types/polka': '^0.5.1',
-	'svelte-check': '^1.0.0',
-	'svelte-preprocess': '^4.0.0',
-	'typescript': '^3.9.3',
-	'tslib': '^2.0.0'
+	'svelte-check': '^1.0.46',
+	'svelte-preprocess': '^4.3.0',
+	'tslib': '^2.0.1',
+	'typescript': '^4.0.3'
 });
 
 // Add script for checking
@@ -162,26 +162,8 @@ const serviceWorkerConfigPath = path.join(
 let serviceWorkerConfig = fs.readFileSync(serviceWorkerConfigPath, 'utf8');
 
 serviceWorkerConfig = serviceWorkerConfig.replace(
-	`'@sapper/service-worker';`,
-	`'@sapper/service-worker';\n
-type Clientable = { clients: Clients };`
-);
-
-serviceWorkerConfig = serviceWorkerConfig.replace(
 	`shell.concat(files);`,
 	`(shell as string[]).concat(files as string[]);`
-);
-
-serviceWorkerConfig = serviceWorkerConfig.replace(
-	`const cached = new Set(to_cache);`,
-	`const cached = new Set(to_cache);\n
-const claimClient = (input: Clientable) => {
-	input.clients.claim();
-};
-
-const skipWaiting = (input: ServiceWorkerGlobalScope) => {
-	input.skipWaiting();
-};`
 );
 
 serviceWorkerConfig = serviceWorkerConfig.replace(
@@ -191,7 +173,7 @@ serviceWorkerConfig = serviceWorkerConfig.replace(
 
 serviceWorkerConfig = serviceWorkerConfig.replace(
 	`self.skipWaiting();`,
-	`skipWaiting((self as any) as ServiceWorkerGlobalScope);`
+	`((self as any) as ServiceWorkerGlobalScope).skipWaiting();`
 );
 
 serviceWorkerConfig = serviceWorkerConfig.replace(
@@ -201,7 +183,7 @@ serviceWorkerConfig = serviceWorkerConfig.replace(
 
 serviceWorkerConfig = serviceWorkerConfig.replace(
 	`self.clients.claim();`,
-	`claimClient((self as any) as { clients: Clients });`
+	`((self as any) as ServiceWorkerGlobalScope).clients.claim();`
 );
 
 serviceWorkerConfig = serviceWorkerConfig.replace(
