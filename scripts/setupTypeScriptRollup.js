@@ -11,15 +11,15 @@ console.log('Adding typescript with rollup');
 const pkgJSONPath = path.join(projectRoot, 'package.json');
 const packageJSON = JSON.parse(fs.readFileSync(pkgJSONPath, 'utf8'));
 packageJSON.devDependencies = Object.assign(packageJSON.devDependencies, {
-	'svelte-check': '^1.0.0',
-	'svelte-preprocess': '^4.0.0',
 	'@rollup/plugin-typescript': '^6.0.0',
-	'typescript': '^3.9.3',
-	'tslib': '^2.0.0',
 	'@tsconfig/svelte': '^1.0.0',
 	'@types/compression': '^1.7.0',
 	'@types/node': '^14.0.27',
-	'@types/polka': '^0.5.1'
+	'@types/polka': '^0.5.1',
+	'svelte-check': '^1.0.0',
+	'svelte-preprocess': '^4.0.0',
+	'typescript': '^3.9.3',
+	'tslib': '^2.0.0'
 });
 
 // Add script for checking
@@ -32,7 +32,6 @@ fs.writeFileSync(pkgJSONPath, JSON.stringify(packageJSON, null, '  '));
 
 scanFolderAndReplace(path.join(projectRoot, 'src'));
 
-// replace js script tags to ts
 // replace js filenames to ts
 function scanFolderAndReplace(dir) {
 	const elements = fs.readdirSync(dir, { withFileTypes: true });
@@ -40,13 +39,6 @@ function scanFolderAndReplace(dir) {
 	for (let i = 0; i < elements.length; i++) {
 		if (elements[i].isDirectory()) {
 			scanFolderAndReplace(path.join(dir, elements[i].name));
-		} else if (elements[i].name.match(/.svelte/)) {
-			let svelteFile = fs.readFileSync(
-				path.join(dir, elements[i].name),
-				'utf8'
-			);
-			svelteFile = svelteFile.replace('<script', '<script lang="ts"');
-			fs.writeFileSync(path.join(dir, elements[i].name), svelteFile);
 		} else if (elements[i].name.match(/^((?!json).)*js$/)) {
 			fs.renameSync(
 				path.join(dir, elements[i].name),
@@ -55,6 +47,73 @@ function scanFolderAndReplace(dir) {
 		}
 	}
 }
+
+// Switch the *.svelte file to use TS
+[
+	{
+		view: 'components/Nav',
+		vars: [{ name: 'segment', type: 'string' }]
+	},
+	{
+		view: 'routes/index'
+	},
+	{
+		view: 'routes/about'
+	},
+	{
+		view: 'routes/_layout',
+		vars: [{ name: 'segment', type: 'string' }]
+	},
+	{
+		view: 'routes/_error',
+		vars: [
+			{ name: 'status', type: 'number' },
+			{ name: 'error', type: 'Error' }
+		]
+	},
+	{
+		view: 'routes/blog/index',
+		vars: [
+			{ name: 'posts', type: '{ slug: string; title: string, html: any }[]' }
+		],
+		contextModule: [
+			{
+				js: '.then(r => r.json())',
+				ts: '.then((r: { json: () => any; }) => r.json())'
+			},
+			{
+				js: '.then(posts => {',
+				ts: '.then((posts: { slug: string; title: string, html: any }[]) => {'
+			}
+		]
+	},
+	{
+		view: 'routes/blog/[slug]',
+		vars: [{ name: 'post', type: '{ slug: string; title: string, html: any }' }]
+	}
+].forEach(({ view, vars, contextModule }) => {
+	const svelteFilePath = path.join(projectRoot, 'src', `${view}.svelte`);
+	let file = fs.readFileSync(svelteFilePath, 'utf8');
+
+	file = file.replace(/(?:<script)(( .*?)*?)>/gm, '<script$1 lang="ts">');
+
+	if (vars) {
+		vars.forEach(({ name, type }) => {
+			file = file.replace(
+				`export let ${name};`,
+				`export let ${name}: ${type};`
+			);
+		});
+	}
+
+	if (contextModule) {
+		contextModule.forEach(({ js, ts }) => {
+			file = file.replace(`${js}`, `${ts}`);
+		});
+	}
+
+	fs.writeFileSync(svelteFilePath, file);
+});
 
 // Edit rollup config
 const rollupConfigPath = path.join(projectRoot, 'rollup.config.js');
@@ -69,6 +128,10 @@ import typescript from '@rollup/plugin-typescript';`
 );
 
 // Edit inputs
+rollupConfig = rollupConfig.replace(
+	`onwarn(warning);`,
+	`(warning.code === 'THIS_IS_UNDEFINED') ||\n\tonwarn(warning);`
+);
 rollupConfig = rollupConfig.replace(
 	`input: config.client.input(),`,
 	`input: config.client.input().replace(/\.js$/, '.ts'),`
@@ -197,7 +260,5 @@ fs.writeFileSync(
 console.log('Converted to TypeScript.');
 
 if (fs.existsSync(path.join(projectRoot, 'node_modules'))) {
-	console.log(
-		'\nYou will need to re-run your dependency manager to get started.'
-	);
+	console.log(`\nYou will need to re-run 'npm install' to get started.`);
 }
