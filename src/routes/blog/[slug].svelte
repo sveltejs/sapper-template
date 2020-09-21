@@ -1,5 +1,5 @@
 <script context="module">
-	export async function preload({ params, query }) {
+	export async function preload({ params }) {
 		// the `slug` parameter is available because
 		// this file is called [slug].svelte
 		const res = await this.fetch(`blog/${params.slug}.json`);
@@ -33,7 +33,7 @@
 
 	.content :global(pre) {
 		background-color: #f9f9f9;
-		box-shadow: inset 1px 1px 5px rgba(0,0,0,0.05);
+		box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.05);
 		padding: 0.5em;
 		border-radius: 2px;
 		overflow-x: auto;
@@ -59,6 +59,6 @@
 
 <h1>{post.title}</h1>
 
-<div class='content'>
+<div class="content">
 	{@html post.html}
 </div>
