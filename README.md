@@ -58,7 +58,7 @@ By default, the template uses plain JavaScript. If you wish to use TypeScript in
 The template comes with a script that will perform these changes for you by running
 
 ```bash
-node scripts/setupTypeScriptRollup.js
+node scripts/setupTypeScript.js
 ```
 
 The script does not support webpack at the moment.
