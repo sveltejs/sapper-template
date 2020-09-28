@@ -142,7 +142,8 @@ function updateRollupConfig() {
 			/'rollup-plugin-terser';\n(?!import sveltePreprocess)/,
 			`'rollup-plugin-terser';
 import sveltePreprocess from 'svelte-preprocess';
-import typescript from '@rollup/plugin-typescript';`
+import typescript from '@rollup/plugin-typescript';
+`
 		],
 		// Edit inputs
 		[
