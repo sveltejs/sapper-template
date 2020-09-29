@@ -39,6 +39,9 @@
       }
     },
     "webpack": {
+      "scripts":{
+        "dev": "sapper dev --no-hot"
+      },
       "devDependencies": {
         "svelte-loader": "^2.9.0",
         "webpack": "^4.7.0",
