@@ -242,5 +242,9 @@ if (!argv[2]) {
 console.log('Converted to TypeScript.');
 
 if (fs.existsSync(path.join(projectRoot, 'node_modules'))) {
-	console.log(`\nYou will need to re-run 'npm install' to get started.`);
+	console.log(`
+Next:
+1. run 'npm install' again to install TypeScript dependencies
+2. run 'npm run build' for the @sapper imports in your project to work
+`);
 }
