@@ -61,6 +61,8 @@ The template comes with a script that will perform these changes for you by runn
 node scripts/setupTypeScript.js
 ```
 
+`@sapper` dependencies are resolved through `src/node_modules/@sapper`, which is created during the build. You therefore need to run or build the project once to avoid warnings about missing dependencies.
+
 The script does not support webpack at the moment.
 
 ## Directory structure
