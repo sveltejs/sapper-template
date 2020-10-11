@@ -154,7 +154,7 @@ function updateWebpackConfig() {
 		],
 		[
 			/entry: config\.server\.entry\(\)/,
-			`entry: { server: config.server.entry().server.replace(/\\.js$/, ".ts") }`
+			`entry: { server: config.server.entry().server.replace(/\\.js$/, '.ts') }`
 		],
 		[
 			/entry: config\.serviceworker\.entry\(\)/,
@@ -169,12 +169,12 @@ function updateWebpackConfig() {
 		// Add TypeScript rules for client and server
 		[
 			/module: {\n\s*rules: \[\n\s*(?!{\n\s*test: \/\\\.ts\$\/)/g,
-			`module: {\n\t\t\trules: [\n\t\t\t\t{\n\t\t\t\t\ttest: /\\.ts$/,\n\t\t\t\t\tloader: "ts-loader"\n\t\t\t\t},\n\t\t\t\t`
+			`module: {\n\t\t\trules: [\n\t\t\t\t{\n\t\t\t\t\ttest: /\\.ts$/,\n\t\t\t\t\tloader: 'ts-loader'\n\t\t\t\t},\n\t\t\t\t`
 		],
 		// Add TypeScript rules for serviceworker
 		[
 			/output: config\.serviceworker\.output\(\),\n\s*(?!module)/,
-			`output: config.serviceworker.output(),\n\t\tmodule: {\n\t\t\trules: [\n\t\t\t\t{\n\t\t\t\t\ttest: /\\.ts$/,\n\t\t\t\t\tloader: "ts-loader"\n\t\t\t\t}\n\t\t\t]\n\t\t},\n\t\t`
+			`output: config.serviceworker.output(),\n\t\tmodule: {\n\t\t\trules: [\n\t\t\t\t{\n\t\t\t\t\ttest: /\\.ts$/,\n\t\t\t\t\tloader: 'ts-loader'\n\t\t\t\t}\n\t\t\t]\n\t\t},\n\t\t`
 		],
 		// Edit outputs
 		[
