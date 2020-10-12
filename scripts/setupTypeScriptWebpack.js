@@ -60,8 +60,8 @@ function addDepsToPackageJson() {
 		'@types/node': '^14.11.1',
 		'@types/polka': '^0.5.1',
 		'svelte-check': '^1.0.46',
-        'svelte-preprocess': '^4.3.0',
-        'ts-loader': '^8.0.4',
+		'svelte-preprocess': '^4.3.0',
+		'ts-loader': '^8.0.4',
 		tslib: '^2.0.1',
 		typescript: '^4.0.3'
 	});
