@@ -226,7 +226,8 @@ function updateServiceWorker() {
 		[`self.skipWaiting();`, `((self as any) as ServiceWorkerGlobalScope).skipWaiting();`],
 		[`'activate', event =>`, `'activate', <EventType extends ExtendableEvent>(event: EventType) =>`],
 		[`self.clients.claim();`, `((self as any) as ServiceWorkerGlobalScope).clients.claim();`],
-		[`'fetch', event =>`, `'fetch', <EventType extends FetchEvent>(event: EventType) =>`]
+		[`fetchAndCache(request)`, `fetchAndCache(request: Request)`],
+		[`'fetch', event =>`, `'fetch', <EventType extends FetchEvent>(event: EventType) =>`],
 	]);
 }
 
