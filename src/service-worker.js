@@ -59,25 +59,25 @@ self.addEventListener('fetch', event => {
 	const skipBecauseUncached = event.request.cache === "only-if-cached" && !isStaticAsset;
 
 	if (isHttp && !isDevServerRequest && !skipBecauseUncached) {
-    event.respondWith(
-      (async () => {
-        // always serve static files and bundler-generated assets from cache
-        const cachedAsset = isStaticAsset && await caches.match(event.request);
+		event.respondWith(
+			(async () => {
+				// always serve static files and bundler-generated assets from cache
+				const cachedAsset = isStaticAsset && await caches.match(event.request);
 
-        // for pages, you might want to serve a shell `service-worker-index.html` file,
-        // which Sapper has generated for you. It's not right for every
-        // app, but if it's right for yours then uncomment this section
-        /*
+				// for pages, you might want to serve a shell `service-worker-index.html` file,
+				// which Sapper has generated for you. It's not right for every
+				// app, but if it's right for yours then uncomment this section
+				/*
 				if (!cachedAsset && url.origin === self.origin && routes.find(route => route.pattern.test(url.pathname))) {
 					return caches.match('/service-worker-index.html');
 				}
 				*/
 
-        // for everything else, try the network first, falling back to
-        // cache if the user is offline. (If the pages never change, you
-        // might prefer a cache-first approach to a network-first one.)
-        return cachedAsset || fetchAndCache(event.request);
-      })()
-    );
-  }
+				// for everything else, try the network first, falling back to
+				// cache if the user is offline. (If the pages never change, you
+				// might prefer a cache-first approach to a network-first one.)
+				return cachedAsset || fetchAndCache(event.request);
+			})()
+		);
+	}
 });
