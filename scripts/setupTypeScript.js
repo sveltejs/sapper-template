@@ -152,14 +152,14 @@ import typescript from '@rollup/plugin-typescript';
 			/(?<!THIS_IS_UNDEFINED[^\n]*\n\s*)onwarn\(warning\);/,
 			`(warning.code === 'THIS_IS_UNDEFINED') ||\n\tonwarn(warning);`
 		],
-		[/input: config.client.input\(\)(?!\.replace)/, `input: config.client.input().replace(/\.js$/, '.ts')`],
+		[/input: config.client.input\(\)(?!\.replace)/, `input: config.client.input().replace(/\\.js$/, '.ts')`],
 		[
 			/input: config.server.input\(\)(?!\.replace)/,
-			`input: { server: config.server.input().server.replace(/\.js$/, ".ts") }`
+			`input: { server: config.server.input().server.replace(/\\.js$/, ".ts") }`
 		],
 		[
 			/input: config.serviceworker.input\(\)(?!\.replace)/,
-			`input: config.serviceworker.input().replace(/\.js$/, '.ts')`
+			`input: config.serviceworker.input().replace(/\\.js$/, '.ts')`
 		],
 		// Add preprocess to the svelte config, this is tricky because there's no easy signifier.
 		// Instead we look for 'hydratable: true,'
