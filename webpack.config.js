@@ -10,7 +10,7 @@ const dev = mode === 'development';
 const alias = { svelte: path.resolve('node_modules', 'svelte') };
 const extensions = ['.mjs', '.js', '.json', '.svelte', '.html'];
 const mainFields = ['svelte', 'module', 'browser', 'main'];
-const fileLoaderRule = 				{
+const fileLoaderRule = {
 	test: /\.(png|svg|jpg|gif)$/,
 	use: [
 		'file-loader',
