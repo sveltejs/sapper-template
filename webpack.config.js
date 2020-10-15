@@ -10,6 +10,12 @@ const dev = mode === 'development';
 const alias = { svelte: path.resolve('node_modules', 'svelte') };
 const extensions = ['.mjs', '.js', '.json', '.svelte', '.html'];
 const mainFields = ['svelte', 'module', 'browser', 'main'];
+const fileLoaderRule = {
+	test: /\.(png|svg|jpg|gif)$/,
+	use: [
+		'file-loader',
+	]
+};
 
 module.exports = {
 	client: {
@@ -28,7 +34,8 @@ module.exports = {
 							hotReload: false // pending https://github.com/sveltejs/svelte/issues/2377
 						}
 					}
-				}
+				},
+				fileLoaderRule
 			]
 		},
 		mode,
@@ -62,7 +69,8 @@ module.exports = {
 							dev
 						}
 					}
-				}
+				},
+				fileLoaderRule
 			]
 		},
 		mode,
