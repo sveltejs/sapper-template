@@ -222,11 +222,12 @@ function updateWebpackConfig() {
 function updateServiceWorker() {
 	replaceInFile(path.join(projectRoot, 'src', 'service-worker.ts'), [
 		[`shell.concat(files);`, `(shell as string[]).concat(files as string[]);`],
-		[`'install', event =>`, `'install', <EventType extends ExtendableEvent>(event: EventType) =>`],
 		[`self.skipWaiting();`, `((self as any) as ServiceWorkerGlobalScope).skipWaiting();`],
-		[`'activate', event =>`, `'activate', <EventType extends ExtendableEvent>(event: EventType) =>`],
 		[`self.clients.claim();`, `((self as any) as ServiceWorkerGlobalScope).clients.claim();`],
-		[`'fetch', event =>`, `'fetch', <EventType extends FetchEvent>(event: EventType) =>`]
+		[`fetchAndCache(request)`, `fetchAndCache(request: Request)`],
+		[`self.addEventListener('activate', event =>`, `self.addEventListener('activate', (event: ExtendableEvent) =>`],
+		[`self.addEventListener('install', event =>`, `self.addEventListener('install', (event: ExtendableEvent) =>`],
+		[`addEventListener('fetch', (event) =>`, `addEventListener('fetch', (event: FetchEvent) =>`],
 	]);
 }
 
