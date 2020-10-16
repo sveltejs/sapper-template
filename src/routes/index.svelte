@@ -1,6 +1,4 @@
 <script>
-	/* Importing the image rather than just specifying the URL as `src` will give it a URL containing a hash, 
-	 * thereby making caching and CDN use easier. */
 	import successkid from 'images/successkid.jpg';
 </script>
 

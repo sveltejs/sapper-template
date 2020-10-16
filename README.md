@@ -112,7 +112,7 @@ The default [service-worker.js](src/service-worker.js) will preload and cache th
 import { files } from '@sapper/service-worker';
 ```
 
-If you have static files you do not want to cache, you should exclude them from this list.
+If you have static files you do not want to cache, you should exclude them from this list after importing it (and before passing it to `cache.addAll`).
 
 Static files are served using [sirv](https://github.com/lukeed/sirv).
 
