@@ -227,7 +227,7 @@ function updateServiceWorker() {
 		[`fetchAndCache(request)`, `fetchAndCache(request: Request)`],
 		[`self.addEventListener('activate', event =>`, `self.addEventListener('activate', (event: ExtendableEvent) =>`],
 		[`self.addEventListener('install', event =>`, `self.addEventListener('install', (event: ExtendableEvent) =>`],
-		[`addEventListener('fetch', (event) =>`, `addEventListener('fetch', (event: FetchEvent) =>`],
+		[`addEventListener('fetch', event =>`, `addEventListener('fetch', (event: FetchEvent) =>`],
 	]);
 }
 

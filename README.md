@@ -27,7 +27,7 @@ Replace `my-app` with the path where you wish to create the project.
 
 ### Using GitHub templates
 
-Alternatively, you can create the new project as a GitHub reposity using GitHub's template feature.
+Alternatively, you can create the new project as a GitHub repository using GitHub's template feature.
 
 Go to either [sapper-template-rollup](https://github.com/sveltejs/sapper-template-rollup) or [sapper-template-webpack](https://github.com/sveltejs/sapper-template-webpack) and click on "Use this template" to create a new project repository initialized by the template.
 
