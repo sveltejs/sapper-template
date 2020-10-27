@@ -34,7 +34,8 @@ export default {
 			}),
 			url({
 				sourceDir: path.resolve(__dirname, 'src/node_modules/images'),
-				publicPath: '/client/'
+				publicPath: '/client/',
+				include: ['**/*.svg', '**/*.png', '**/*.jpg', '**/*.jpeg', '**/*.gif', '**/*.webp'],
 			}),
 			resolve({
 				browser: true,
@@ -84,6 +85,7 @@ export default {
 			url({
 				sourceDir: path.resolve(__dirname, 'src/node_modules/images'),
 				publicPath: '/client/',
+				include: ['**/*.svg', '**/*.png', '**/*.jpg', '**/*.jpeg', '**/*.gif', '**/*.webp'],
 				emitFiles: false // already emitted by client build
 			}),
 			resolve({
