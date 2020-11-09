@@ -165,7 +165,7 @@ import typescript from '@rollup/plugin-typescript';
 		// Instead we look for 'hydratable: true,'
 		[/hydratable: true(?!,\n\s*preprocess)/g, 'hydratable: true,\n\t\t\t\tpreprocess: sveltePreprocess()'],
 		// Add TypeScript
-		[/commonjs\(\)(?!,\n\s*typescript)/g, 'commonjs(),\n\t\t\ttypescript({ sourceMap: dev })']
+		[/commonjs\(\)(?!,\n\s*typescript)/g, 'commonjs(),\n\t\t\ttypescript({ sourceMap: dev, inlineSourceMap: dev, inlineSources: dev })']
 	]);
 }
 
