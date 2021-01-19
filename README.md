@@ -133,7 +133,7 @@ npm install -g vercel
 vercel
 ```
 
-If your app can't be exported to a static site, you can use the [verce;-sapper](https://github.com/thgh/vercel-sapper) builder. You can find instructions on how to do so in its [README](https://github.com/thgh/vercel-sapper#basic-usage).
+If your app can't be exported to a static site, you can use the [vercel-sapper](https://github.com/thgh/vercel-sapper) builder. You can find instructions on how to do so in its [README](https://github.com/thgh/vercel-sapper#basic-usage).
 
 
 ## Using external components
