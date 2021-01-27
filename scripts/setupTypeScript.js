@@ -162,7 +162,7 @@ import typescript from '@rollup/plugin-typescript';
 			`input: config.serviceworker.input().replace(/\\.js$/, '.ts')`
 		],
 		// Add preprocess
-		[/compilerOptions/g, 'preprocess: sveltePreprocess(),\n\t\t\t\tcompilerOptions'],
+		[/compilerOptions/g, 'preprocess: sveltePreprocess({ sourceMap: dev }),\n\t\t\t\tcompilerOptions'],
 		// Add TypeScript
 		[/commonjs\(\)(?!,\n\s*typescript)/g, 'commonjs(),\n\t\t\ttypescript({ sourceMap: dev })']
 	]);
@@ -198,7 +198,7 @@ function updateWebpackConfig() {
 		// Instead we look for 'hydratable: true,'
 		[
 			/hydratable: true(?!,\n\s*preprocess)/g,
-			'hydratable: true,\n\t\t\t\t\t\t\tpreprocess: sveltePreprocess()'
+			'hydratable: true,\n\t\t\t\t\t\t\tpreprocess: sveltePreprocess(({ sourceMap: dev })'
 		],
 		// Add TypeScript rules for client and server
 		[
