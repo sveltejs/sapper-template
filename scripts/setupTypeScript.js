@@ -198,7 +198,7 @@ function updateWebpackConfig() {
 		// Instead we look for 'hydratable: true,'
 		[
 			/hydratable: true(?!,\n\s*preprocess)/g,
-			'hydratable: true,\n\t\t\t\t\t\t\tpreprocess: sveltePreprocess()'
+			'hydratable: true,\n\t\t\t\t\t\t\tpreprocess: sveltePreprocess(({ sourceMap: dev })'
 		],
 		// Add TypeScript rules for client and server
 		[
