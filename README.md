@@ -146,6 +146,11 @@ Because of that, it's essential that the bundler doesn't treat the package as an
 npm install -D @sveltejs/svelte-virtual-list
 ```
 
+## Troubleshooting
+
+Using Windows and WSL2? 
+
+If your project lives outside the WSL root directory, [this limitation](https://github.com/microsoft/WSL/issues/4169) is known to cause live-reloading to fail. See [https://github.com/sveltejs/sapper/issues/1150](this issue) for details.
 
 ## Bugs and feedback
 
