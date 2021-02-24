@@ -25,7 +25,7 @@ export default {
 		plugins: [
 			replace({
 				'process.browser': true,
-				'preventAssignment':true,
+				'preventAssignment': true,
 				'process.env.NODE_ENV': JSON.stringify(mode)
 			}),
 			svelte({
