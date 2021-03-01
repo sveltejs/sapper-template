@@ -26,8 +26,8 @@ export default {
 			replace({
 				preventAssignment: true,
 				values:{
-				  'process.browser': true,
-			      'process.env.NODE_ENV': JSON.stringify(mode)
+					'process.browser': true,
+					'process.env.NODE_ENV': JSON.stringify(mode)
 				},
 			}),
 			svelte({
@@ -79,8 +79,8 @@ export default {
 			replace({
 				preventAssignment: true,
 				values:{
-				  'process.browser': true,
-				  'process.env.NODE_ENV': JSON.stringify(mode)
+					'process.browser': true,
+					'process.env.NODE_ENV': JSON.stringify(mode)
 				},
 			}),
 			svelte({
@@ -102,7 +102,6 @@ export default {
 			commonjs()
 		],
 		external: Object.keys(pkg.dependencies).concat(require('module').builtinModules),
-
 		preserveEntrySignatures: 'strict',
 		onwarn,
 	},
@@ -115,14 +114,13 @@ export default {
 			replace({
 				preventAssignment: true,
 				values:{
-				  'process.browser': true,
-				  'process.env.NODE_ENV': JSON.stringify(mode)
+					'process.browser': true,
+					'process.env.NODE_ENV': JSON.stringify(mode)
 				},
 			}),
 			commonjs(),
 			!dev && terser()
 		],
-
 		preserveEntrySignatures: false,
 		onwarn,
 	}
