@@ -27,8 +27,8 @@ export default {
 				preventAssignment: true,
 				values:{
 				  'process.browser': true,
+			          'process.env.NODE_ENV': JSON.stringify(mode)
 				},
-				'process.env.NODE_ENV': JSON.stringify(mode)
 			}),
 			svelte({
 				compilerOptions: {
@@ -80,8 +80,8 @@ export default {
 				preventAssignment: true,
 				values:{
 				  'process.browser': true,
+				  'process.env.NODE_ENV': JSON.stringify(mode)
 				},
-				'process.env.NODE_ENV': JSON.stringify(mode)
 			}),
 			svelte({
 				compilerOptions: {
@@ -116,8 +116,8 @@ export default {
 				preventAssignment: true,
 				values:{
 				  'process.browser': true,
+				  'process.env.NODE_ENV': JSON.stringify(mode)
 				},
-				'process.env.NODE_ENV': JSON.stringify(mode)
 			}),
 			commonjs(),
 			!dev && terser()
