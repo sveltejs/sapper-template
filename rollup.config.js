@@ -79,7 +79,7 @@ export default {
 			replace({
 				preventAssignment: true,
 				values:{
-					'process.browser': true,
+					'process.browser': false,
 					'process.env.NODE_ENV': JSON.stringify(mode)
 				},
 			}),
