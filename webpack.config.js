@@ -29,9 +29,15 @@ module.exports = {
 					use: {
 						loader: 'svelte-loader',
 						options: {
-							dev,
-							hydratable: true,
-							hotReload: false // pending https://github.com/sveltejs/svelte/issues/2377
+							compilerOptions: {
+								dev,
+								hydratable: true
+							},
+							// Webpack 4 uses acorn v6 which doesn't work with HMR
+							// Use overrides from npm or resolutions from yarn to set minimal
+							// acorn version to v7+
+							// https://github.com/sveltejs/sapper-template/pull/308
+							hotReload: false
 						}
 					}
 				},
@@ -63,10 +69,12 @@ module.exports = {
 					use: {
 						loader: 'svelte-loader',
 						options: {
-							css: false,
-							generate: 'ssr',
-							hydratable: true,
-							dev
+							compilerOptions: {
+								css: false,
+								generate: 'ssr',
+								hydratable: true,
+								dev
+							},
 						}
 					}
 				},
