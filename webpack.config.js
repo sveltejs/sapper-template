@@ -33,7 +33,11 @@ module.exports = {
 								dev,
 								hydratable: true
 							},
-							hotReload: dev
+							// Webpack 4 uses acorn v6 which doesn't work with HMR
+							// Use overrides from npm or resolutions from yarn to set minimal
+							// acorn version to v7+
+							// https://github.com/sveltejs/sapper-template/pull/308
+							hotReload: false
 						}
 					}
 				},
