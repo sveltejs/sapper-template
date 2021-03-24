@@ -29,9 +29,11 @@ module.exports = {
 					use: {
 						loader: 'svelte-loader',
 						options: {
-							dev,
-							hydratable: true,
-							hotReload: false // pending https://github.com/sveltejs/svelte/issues/2377
+							compilerOptions: {
+								dev,
+								hydratable: true
+							},
+							hotReload: dev
 						}
 					}
 				},
@@ -63,10 +65,12 @@ module.exports = {
 					use: {
 						loader: 'svelte-loader',
 						options: {
-							css: false,
-							generate: 'ssr',
-							hydratable: true,
-							dev
+							compilerOptions: {
+								css: false,
+								generate: 'ssr',
+								hydratable: true,
+								dev
+							},
 						}
 					}
 				},
