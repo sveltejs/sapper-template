@@ -194,12 +194,10 @@ function updateWebpackConfig() {
 			/entry: config\.serviceworker\.entry\(\)/,
 			`entry: { 'service-worker': config.serviceworker.entry()['service-worker'].replace(/\\.js$/, '.ts') }`
 		],
-		// Add preprocess to the svelte config, this is tricky because there's no easy signifier.
-		// Instead we look for 'hydratable: true,'
 		[
-			/hydratable: true(?!,\n\s*preprocess)/g,
-			'hydratable: true,\n\t\t\t\t\t\t\tpreprocess: sveltePreprocess({ sourceMap: dev })'
-		],
+      /loader: 'svelte-loader',\n\t\t\t\t\t\toptions: {/g,
+      'loader: \'svelte-loader\',\n\t\t\t\t\t\toptions: {\n\t\t\t\t\t\t\tpreprocess: sveltePreprocess({ sourceMap: dev }),'
+    ],
 		// Add TypeScript rules for client and server
 		[
 			/module: {\n\s*rules: \[\n\s*(?!{\n\s*test: \/\\\.ts\$\/)/g,
