@@ -8,9 +8,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - uses: actions/setup-node@v1
-      -
-        env:
+      - uses: actions/setup-node@v2
+        with:
+          cache: npm
+      - env:
           CI: true
           SSH_KEY: ${{ secrets.SSH_KEY }}
           SSH_KEY_ROLLUP: ${{ secrets.SSH_KEY_ROLLUP }}
