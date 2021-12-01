@@ -77,6 +77,21 @@ function addDepsToPackageJson() {
 	fs.writeFileSync(pkgJSONPath, JSON.stringify(packageJSON, null, '  '));
 }
 
+function updateServerFile(fileName) {
+	let contents = fs.readFileSync(fileName, "utf8");
+	const newContents = contents
+	  .replace(
+		/import\s+polka.+from\s'polka';/,
+		`import polka, { Middleware } from 'polka'`
+	  )
+	  .replace(
+		/compression\({.+\),/,
+		"compression({ threshold: 0 }) as unknown as Middleware,"
+	  )
+	  .replace(/.listen\(.+(\t|\n).+(\t|\n).+}\)/, ".listen(PORT)");
+	fs.writeFileSync(fileName, newContents);
+}
+
 function changeJsExtensionToTs(dir) {
 	const elements = fs.readdirSync(dir, { withFileTypes: true });
 
@@ -84,6 +99,9 @@ function changeJsExtensionToTs(dir) {
 		if (elements[i].isDirectory()) {
 			changeJsExtensionToTs(path.join(dir, elements[i].name));
 		} else if (elements[i].name.match(/^[^_]((?!json).)*js$/)) {
+			if (elements[i].name === "server.js") {
+				updateServerFile(path.join(dir, elements[i].name));
+			}
 			fs.renameSync(path.join(dir, elements[i].name), path.join(dir, elements[i].name).replace('.js', '.ts'));
 		}
 	}
