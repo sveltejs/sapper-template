@@ -1,5 +1,7 @@
 import * as sapper from '@sapper/app';
 
-sapper.start({
-	target: document.querySelector('#sapper')
+window.addEventListener('load', () => {
+	sapper.start({
+		target: document.querySelector('#sapper')
+	});
 });
