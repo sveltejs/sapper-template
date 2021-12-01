@@ -164,7 +164,7 @@ import typescript from '@rollup/plugin-typescript';
 		// Add preprocess
 		[/compilerOptions/g, 'preprocess: sveltePreprocess({ sourceMap: dev }),\n\t\t\t\tcompilerOptions'],
 		// Add TypeScript
-		[/commonjs\(\)(?!,\n\s*typescript)/g, 'commonjs(),\n\t\t\ttypescript({ sourceMap: dev })']
+		[/commonjs\(\)(?!,\n\s*typescript)/g, 'commonjs(),\n\t\t\ttypescript({ sourceMap: dev, inlineSourceMap: dev, inlineSources: dev })']
 	]);
 }
 
